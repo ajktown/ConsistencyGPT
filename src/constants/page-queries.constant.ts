@@ -1,3 +1,4 @@
 export enum PageQueryConst {
-  wordID = `word_id`,
+  // Sample:
+  // wordID = `word_id`,
 }
