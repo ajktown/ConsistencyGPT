@@ -1,4 +1,4 @@
-export const WordCardFrameStyle = {
+export const ActivityCalendarFrameStyle = {
   p: 1,
   style: { backgroundColor: `#aaa` },
   width: `100%`,
