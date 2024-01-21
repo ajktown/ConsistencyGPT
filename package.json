@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "inspect": "yarn format && yarn lint --fix  && yarn tsc && yarn audit",
+    "latest": "yarn logDate && yarn upgrade --latest && yarn audit",
+    "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
+    "logDate": "echo $(date +%y%m%d) > ./yarn-latest.record",
     "dev": "next dev -p 3100",
     "build": "next build",
     "start": "next start -p 3100",
