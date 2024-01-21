@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Stack } from '@mui/material'
 import ActivityCalendar from '@/components/molecule_activity_calendar'
 
-const WordCardFrame: FC = () => {
+const ActivityCalendarFrame: FC = () => {
   return (
     <Stack width="100%" alignItems="center">
       <Stack>
@@ -15,4 +15,4 @@ const WordCardFrame: FC = () => {
   )
 }
 
-export default WordCardFrame
+export default ActivityCalendarFrame
