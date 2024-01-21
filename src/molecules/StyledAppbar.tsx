@@ -4,7 +4,6 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import AppsIcon from '@mui/icons-material/Apps'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
-import AppbarSearchBar from '@/components/molecule_appbar_search_bar'
 import Image from 'next/image'
 import EndUserAvatar from '@/components/atom_user_avatar/index.end-user'
 
@@ -45,7 +44,6 @@ const StyledAppbarMolecule: FC<Props> = ({ onClickAppMenu, ...props }) => {
             {props.title}
           </Typography>
           <Box pr={2} />
-          <AppbarSearchBar />
           <Box flexGrow={1} />
           <EndUserAvatar />
         </Toolbar>
