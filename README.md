@@ -1,17 +1,35 @@
+# Consistency GPT
+
+Master Your Daily Tasks with GitHub Commit Calendar-Style Tracking
+
+<!-- TOC -->
+
+- [Consistency GPT](#consistency-gpt)
+  - [Overview](#overview)
+  - [About the starter of this project](#about-the-starter-of-this-project)
+    - [Getting Started](#getting-started)
+    - [Learn More](#learn-more)
+    - [Deploy on Vercel](#deploy-on-vercel)
+
+<!-- /TOC -->
+
+
+## Overview
+ConsistencyGPT revolutionizes daily task management by integrating the familiar and motivational visual style of a GitHub commit calendar. Designed for individuals and teams who value consistency in their workflow, this app offers a unique and engaging way to track and scale daily tasks.
+
+
+## About the starter of this project
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+### Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
 # or
-pnpm dev
-# or
-bun dev
+npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -20,7 +38,7 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+### Learn More
 
 To learn more about Next.js, take a look at the following resources:
 
@@ -29,7 +47,7 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+### Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
