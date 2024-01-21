@@ -2,9 +2,13 @@
 
 Master Your Daily Tasks with GitHub Commit Calendar-Style Tracking
 
+
+## Table of Contents
+
 <!-- TOC -->
 
 - [Consistency GPT](#consistency-gpt)
+  - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
   - [About the starter of this project](#about-the-starter-of-this-project)
     - [Getting Started](#getting-started)
