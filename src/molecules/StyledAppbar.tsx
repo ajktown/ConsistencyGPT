@@ -19,7 +19,7 @@ interface Props {
 const StyledAppbarMolecule: FC<Props> = ({ onClickAppMenu, ...props }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color="transparent">
+      <AppBar position="static" color="info">
         <Toolbar variant="dense">
           <StyledIconButtonAtom
             onClick={onClickAppMenu}
