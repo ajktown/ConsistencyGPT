@@ -3,7 +3,7 @@ import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { isReviewModeState } from '@/recoil/preferences/preference.state'
 import StyledVisibilityAtom from '@/atoms/StyledVisibility'
 /**
- * When you click it, the Wordnote becomes a review mode.
+ * When you click it, the Consistency GPT becomes a review mode.
  * Use-cases
  * 1. When user wants to test himself/herself.
  */

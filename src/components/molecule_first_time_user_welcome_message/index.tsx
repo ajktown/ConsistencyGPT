@@ -14,7 +14,7 @@ const FirstTimeUserWelcomeMessage: FC = () => {
   return (
     <Alert severity="info" onClose={onClose}>
       <Typography variant="caption">
-        {`🎉 Congratulations, you've just joined Wordnote - AJK Town!`}
+        {`🎉 Congratulations, you've just joined Consistency GPT - AJK Town!`}
       </Typography>
     </Alert>
   )

@@ -23,7 +23,6 @@ const WordCardDeleted: FC<Props> = ({ wordId }) => {
           <span style={{ fontWeight: 700 }}>{word.term}</span>
           {`" Deleted`}
         </Typography>
-        <WordCardUndoDeleteButton wordId={wordId} />
       </CardContent>
     </Card>
   )

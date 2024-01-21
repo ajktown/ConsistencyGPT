@@ -20,13 +20,13 @@ const WelcomePage: FC = () => {
 
   return (
     <StyledCentered>
-      <h3>{`Welcome to AJK Town's Wordnote.`}</h3>
+      <h3>{`Welcome to AJK Town's Consistency GPT.`}</h3>
       <h3>{`Sign in with your AJK Town account to continue.`}</h3>
       <ContinueWithDeveloperToken />
       <Button onClick={onClickSignIn}> {`Sign in`}</Button>
       <Button onClick={onClickSignUp}> {`Sign up`}</Button>
       <a style={{ fontStyle: `italic` }}>
-        Wordnote is currently in the{` `}
+        Consistency GPT is currently in the{` `}
         <span style={{ fontWeight: 600 }}>beta</span> stage of development.
       </a>
     </StyledCentered>
