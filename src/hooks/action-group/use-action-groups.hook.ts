@@ -8,7 +8,7 @@ export const useActionGroups = () => {
       async () => {
         try {
           const [res] = await getActionGroupsApi()
-          set(actionGroupsState, res.domains)
+          set(actionGroupsState, res)
         } catch {
           set(actionGroupsState, null)
         }

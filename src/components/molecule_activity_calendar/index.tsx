@@ -7,6 +7,7 @@ import ActivityCalendarUnknown from './index.unknown'
 const ActivityCalendar: FC = () => {
   const actionGroups = useRecoilValue(actionGroupsState)
 
+  if (actionGroups === undefined) return null
   if (actionGroups === null) return <ActivityCalendarUnknown />
 
   return (
@@ -16,7 +17,8 @@ const ActivityCalendar: FC = () => {
         light: [`#d4e6cf`, `#a7d4bf`, `#80d1ab`, `#56d197`, `#29cc7f`],
         dark: [`#d4e6cf`, `#a7d4bf`, `#80d1ab`, `#56d197`, `#29cc7f`],
       }}
-      data={actionGroups.map((p) => {
+      totalCount={actionGroups.totalCount}
+      data={actionGroups.domains.map((p) => {
         return {
           date: new Date(p.props.createdAt).toISOString().split(`T`)[0],
           count: 1,
