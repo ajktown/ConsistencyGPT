@@ -17,4 +17,4 @@ spec:
       - name: ajktown-consistency
         image: ajktown/consistency:latest
         ports:
-        - containerPort: 3000
+        - containerPort: 3100
