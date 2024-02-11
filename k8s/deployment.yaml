@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ajktown-consistency
+  namespace: ajktown
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ajktown-consistency
+  template:
+    metadata:
+      labels:
+        app: ajktown-consistency
+    spec:
+      containers:
+      - name: ajktown-consistency
+        image: ajktown/consistency:latest
+        ports:
+        - containerPort: 3000

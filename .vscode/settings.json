@@ -18,5 +18,8 @@
     "titleBar.inactiveBackground": "#1b779099",
     "titleBar.inactiveForeground": "#e7e7e799"
   },
-  "peacock.color": "#1b7790"
+  "peacock.color": "#1b7790",
+  "cSpell.words": [
+    "ajktown"
+  ]
 }
