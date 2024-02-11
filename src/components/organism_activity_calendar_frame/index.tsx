@@ -5,11 +5,12 @@ import RefreshButton from '../atom_refresh_button'
 import AskToAddWordButton from '../atom_ask_to_add_word_button'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { useOpenNewTab } from '@/hooks/use-open-new-tab'
-
-const WORDNOTE_GPT_URL = `https://wordnote.ajktown.com`
+import { envLambda } from '@/lambdas/get-env.lambda'
 
 const ActivityCalendarFrame: FC = () => {
-  const onOpenNewTab = useOpenNewTab(WORDNOTE_GPT_URL)
+  const wordnoteUrl = envLambda.getWordnoteUrl()
+  const onOpenNewTab = useOpenNewTab(wordnoteUrl)
+
   return (
     <Stack width="100%" alignItems="center">
       <Stack>
@@ -28,7 +29,7 @@ const ActivityCalendarFrame: FC = () => {
         <ActivityCalendar />
         <AskToAddWordButton />
         <StyledTextButtonAtom
-          title="Visit wordnote.ajktown.com"
+          title={`Visit ${wordnoteUrl}`}
           onClick={onOpenNewTab}
         />
         {/* Dialog */}

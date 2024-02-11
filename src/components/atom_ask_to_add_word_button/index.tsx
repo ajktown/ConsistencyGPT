@@ -2,6 +2,7 @@ import { FC, Fragment } from 'react'
 import { useRecoilValue } from 'recoil'
 import { actionGroupsState } from '@/recoil/action-groups/acton-groups.state'
 import { Typography } from '@mui/material'
+import { envLambda } from '@/lambdas/get-env.lambda'
 /**
  * A button that asks you to add a word if you have not for today!
  * Currently follows the KST standard.
@@ -25,7 +26,7 @@ const AskToAddWordButton: FC = () => {
         {`It seems like you have not added your daily word yet. Consistency is the key in your success.`}
       </Typography>
       <Typography fontFamily={`Cormorant Garamond`}>
-        {`Please go visit https://wordnote.ajktown.com and add a word for today.`}
+        {`Please go visit ${envLambda.getWordnoteUrl()} and add a word for today.`}
       </Typography>
     </Fragment>
   )
