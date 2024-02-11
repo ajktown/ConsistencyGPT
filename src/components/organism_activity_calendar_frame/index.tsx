@@ -21,7 +21,7 @@ const ActivityCalendarFrame: FC = () => {
             fontStyle={`italic`}
             fontFamily={`Cormorant Garamond`}
           >
-            {`Your consistency for creating word card this year`}
+            {`Your consistency for posting at least a word card this year`}
           </Typography>
           <RefreshButton />
         </Stack>
