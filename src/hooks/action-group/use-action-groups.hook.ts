@@ -1,5 +1,5 @@
 import { getActionGroupsApi } from '@/api/action-groups/get-action-groups.api'
-import { actionGroupsState } from '@/recoil/action-groups/acton-groups.state'
+import { actionGroupsState } from '@/recoil/action-groups/action-groups.state'
 import { useRecoilCallback } from 'recoil'
 
 export const useActionGroups = () => {

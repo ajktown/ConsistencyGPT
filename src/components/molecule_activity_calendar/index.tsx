@@ -1,4 +1,4 @@
-import { actionGroupsState } from '@/recoil/action-groups/acton-groups.state'
+import { actionGroupsState } from '@/recoil/action-groups/action-groups.state'
 import { FC } from 'react'
 import ReactActivityCalendar from 'react-activity-calendar'
 import { useRecoilValue } from 'recoil'

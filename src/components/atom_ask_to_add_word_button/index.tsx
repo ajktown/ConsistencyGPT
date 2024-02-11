@@ -1,6 +1,6 @@
 import { FC, Fragment } from 'react'
 import { useRecoilValue } from 'recoil'
-import { actionGroupsState } from '@/recoil/action-groups/acton-groups.state'
+import { actionGroupsState } from '@/recoil/action-groups/action-groups.state'
 import { Typography } from '@mui/material'
 import { envLambda } from '@/lambdas/get-env.lambda'
 /**
