@@ -13,6 +13,7 @@ export interface ActionGroupProps {
   props: IAction
 }
 export interface GetActionGroupsResDTO {
+  isTodayHandled: boolean
   totalCount: number
   domains: ActionGroupProps[]
 }
