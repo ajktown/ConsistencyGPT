@@ -29,7 +29,7 @@ COPY --from=build /app/public ./public
 COPY package.json yarn.lock ./
 
 # Expose the port the app runs on
-EXPOSE 3000
+EXPOSE 3100
 
 # Start the app
 CMD ["yarn", "start"]
