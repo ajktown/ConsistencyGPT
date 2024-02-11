@@ -16,7 +16,7 @@ const AskToAddWordButton: FC = () => {
   if (actionGroup.isTodayHandled)
     return (
       <Typography fontFamily={`Cormorant Garamond`}>
-        {`You have accomplished your daily word. Keep up the good work!`}
+        {`You have accomplished posting a daily word. Keep up the good work!`}
       </Typography>
     )
 
