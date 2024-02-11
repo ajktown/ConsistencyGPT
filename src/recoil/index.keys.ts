@@ -2,6 +2,7 @@
 export enum Rkp {
   App = `App`,
   Preferences = `Preferences`,
+  ACtionGroups = `ActionGroups`,
 }
 
 //*  Recoil Key Suffix */
