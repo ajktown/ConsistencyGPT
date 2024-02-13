@@ -10,6 +10,8 @@ Master Your Daily Tasks with GitHub Commit Calendar-Style Tracking
 - [Consistency GPT](#consistency-gpt)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
+  - [Public Image](#public-image)
+    - [Push image command](#push-image-command)
   - [About the starter of this project](#about-the-starter-of-this-project)
     - [Getting Started](#getting-started)
     - [Learn More](#learn-more)
@@ -21,6 +23,19 @@ Master Your Daily Tasks with GitHub Commit Calendar-Style Tracking
 ## Overview
 ConsistencyGPT revolutionizes daily task management by integrating the familiar and motivational visual style of a GitHub commit calendar. Designed for individuals and teams who value consistency in their workflow, this app offers a unique and engaging way to track and scale daily tasks.
 
+## Public Image
+
+https://hub.docker.com/r/ajktown/consistency/tags
+
+
+### Push image command
+You must have permission to push to the repository.
+```sh
+
+docker build -t ajktown/consistency:latest .
+docker push ajktown/consistency:latest
+
+```
 
 ## About the starter of this project
 
