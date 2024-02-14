@@ -1,5 +1,4 @@
-import axios from 'axios'
-import { CustomizedAxiosResponse, DataBasics } from '../index.interface'
+import { DataBasics } from '../index.interface'
 
 type IActionLevel = 0 | 1 | 2 | 3 | 4
 
@@ -23,12 +22,4 @@ export interface GetActionGroupRes {
   actions: IActionDerived[]
   isTodayHandled: boolean
   totalCount: number
-}
-
-export const getActionGroupsApi = async (): Promise<
-  CustomizedAxiosResponse<GetActionGroupRes>
-> => {
-  const url = `/v1/action-groups`
-  const res = await axios.get(url)
-  return [res.data, res]
 }
