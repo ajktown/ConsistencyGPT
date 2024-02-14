@@ -1,21 +1,32 @@
+import { actionGroupsState } from '@/recoil/action-groups/action-groups.state'
 import { FC } from 'react'
-import ReactActivityCalendar, { Activity } from 'react-activity-calendar'
-
-const activities: Activity[] = []
-
-const startDate = new Date(`2024-01-01`)
-const endDate = new Date(`2024-12-31`)
-
-for (let d = startDate; d <= endDate; d.setDate(d.getDate() + 1)) {
-  activities.push({
-    date: d.toISOString().split(`T`)[0],
-    count: 2, // Default value, replace with actual data
-    level: 3, // Default value, replace with actual data
-  })
-}
+import ReactActivityCalendar from 'react-activity-calendar'
+import { useRecoilValue } from 'recoil'
+import ActivityCalendarUnknown from './index.unknown'
 
 const ActivityCalendar: FC = () => {
-  return <ReactActivityCalendar data={activities} />
+  const actionGroups = useRecoilValue(actionGroupsState)
+
+  if (actionGroups === undefined) return null
+  if (actionGroups === null) return <ActivityCalendarUnknown />
+
+  return (
+    <ReactActivityCalendar
+      loading={!actionGroups}
+      theme={{
+        light: [`#d4e6cf`, `#a7d4bf`, `#80d1ab`, `#56d197`, `#29cc7f`],
+        dark: [`#d4e6cf`, `#a7d4bf`, `#80d1ab`, `#56d197`, `#29cc7f`],
+      }}
+      totalCount={actionGroups.totalCount}
+      data={actionGroups.domains.map((p) => {
+        return {
+          date: new Date(p.props.createdAt).toISOString().split(`T`)[0],
+          count: 1,
+          level: p.props.level,
+        }
+      })}
+    />
+  )
 }
 
 export default ActivityCalendar
