@@ -10,6 +10,7 @@ interface IAction extends DataBasics {
 }
 
 export interface IActionDerived extends IAction {
+  yyyymmdd: string
   level: IActionLevel // level is 100% decided by the ActionGroup
 }
 

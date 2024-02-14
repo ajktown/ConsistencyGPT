@@ -23,7 +23,7 @@ const ActivityCalendar: FC = () => {
       totalCount={actionGroupDailyPostWordChallenge.totalCount}
       data={actionGroupDailyPostWordChallenge.actions.map((p) => {
         return {
-          date: new Date(p.createdAt).toISOString().split(`T`)[0],
+          date: p.yyyymmdd,
           count: 1,
           level: p.level,
         }
