@@ -1,6 +1,6 @@
 import { FC, Fragment } from 'react'
 import { useRecoilValue } from 'recoil'
-import { actionGroupsState } from '@/recoil/action-groups/action-groups.state'
+import { getActionGroupsState } from '@/recoil/action-groups/action-groups.state'
 import { Typography } from '@mui/material'
 import { envLambda } from '@/lambdas/get-env.lambda'
 /**
@@ -8,12 +8,12 @@ import { envLambda } from '@/lambdas/get-env.lambda'
  * Currently follows the KST standard.
  */
 const AskToAddWordButton: FC = () => {
-  const actionGroup = useRecoilValue(actionGroupsState)
+  const gotActionGroupsState = useRecoilValue(getActionGroupsState)
 
-  if (actionGroup === undefined) return null
-  if (actionGroup === null) return null
+  if (gotActionGroupsState === undefined) return null
+  if (gotActionGroupsState === null) return null
 
-  if (actionGroup.isTodayHandled)
+  if (gotActionGroupsState.isTodayHandled)
     return (
       <Typography fontFamily={`Cormorant Garamond`}>
         {`You have accomplished posting a daily word. Keep up the good work!`}

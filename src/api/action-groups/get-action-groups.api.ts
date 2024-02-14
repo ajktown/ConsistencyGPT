@@ -4,22 +4,29 @@ import { CustomizedAxiosResponse, DataBasics } from '../index.interface'
 type IActionLevel = 0 | 1 | 2 | 3 | 4
 
 interface IAction extends DataBasics {
+  id: string
   ownerID: string
   groupId: string
-  level: IActionLevel
   message: string
 }
-export interface ActionGroupProps {
-  props: IAction
+
+export interface IActionDerived extends IAction {
+  level: IActionLevel // level is 100% decided by the ActionGroup
 }
-export interface GetActionGroupsResDTO {
+
+export interface IActionGroup extends DataBasics {
+  name: string
+}
+
+export interface GetActionGroupRes {
+  props: IActionGroup
+  actions: IActionDerived[]
   isTodayHandled: boolean
   totalCount: number
-  domains: ActionGroupProps[]
 }
 
 export const getActionGroupsApi = async (): Promise<
-  CustomizedAxiosResponse<GetActionGroupsResDTO>
+  CustomizedAxiosResponse<GetActionGroupRes>
 > => {
   const url = `/v1/action-groups`
   const res = await axios.get(url)
