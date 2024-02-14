@@ -1,15 +1,22 @@
-import { FC } from 'react'
+import { FC, useCallback } from 'react'
 import { Stack, Typography } from '@mui/material'
-import ActivityCalendar from '@/components/molecule_activity_calendar'
-import RefreshButton from '../atom_refresh_button'
-import AskToAddWordButton from '../atom_ask_to_add_word_button'
-import StyledTextButtonAtom from '@/atoms/StyledTextButton'
-import { useOpenNewTab } from '@/hooks/use-open-new-tab'
-import { envLambda } from '@/lambdas/get-env.lambda'
+import StyledCloudRefresher from '@/atoms/StyledCloudRefresher'
+import { useActionGroupById } from '@/hooks/action-group/use-action-group-by-id.hook'
+import { useRecoilValue } from 'recoil'
+import { actionGroupFamily } from '@/recoil/action-groups/action-groups.state'
+import ActivityCalendarById from '../molecule_activity_calendar/index.by-id'
 
-const ActivityCalendarFrame: FC = () => {
-  const wordnoteUrl = envLambda.getWordnoteUrl()
-  const onOpenNewTab = useOpenNewTab(wordnoteUrl)
+interface Props {
+  id: string
+}
+const ActivityCalendarFrame: FC<Props> = ({ id }) => {
+  const actionGroup = useRecoilValue(actionGroupFamily(id))
+  const onGetActionGroupById = useActionGroupById(id)
+
+  const onClickRefresh = useCallback(async () => {
+    // run all together
+    await Promise.all([onGetActionGroupById()])
+  }, [onGetActionGroupById])
 
   return (
     <Stack width="100%" alignItems="center">
@@ -21,17 +28,14 @@ const ActivityCalendarFrame: FC = () => {
             fontStyle={`italic`}
             fontFamily={`Cormorant Garamond`}
           >
-            {`Your consistency for posting at least a word card this year`}
+            {actionGroup
+              ? `Your consistency for "${actionGroup.props.name}" this year`
+              : `Unknown Consistency`}
           </Typography>
-          <RefreshButton />
+          <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
         </Stack>
         {/* Body */}
-        <ActivityCalendar />
-        <AskToAddWordButton />
-        <StyledTextButtonAtom
-          title={`Visit ${wordnoteUrl}`}
-          onClick={onOpenNewTab}
-        />
+        <ActivityCalendarById id={id} />
         {/* Dialog */}
       </Stack>
     </Stack>
