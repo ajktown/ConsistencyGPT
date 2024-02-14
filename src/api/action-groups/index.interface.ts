@@ -4,7 +4,7 @@ type IActionLevel = 0 | 1 | 2 | 3 | 4
 
 interface IAction extends DataBasics {
   id: string
-  ownerID: string
+  ownerId: string
   groupId: string
   message: string
 }
