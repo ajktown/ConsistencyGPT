@@ -15,7 +15,7 @@ const MockFrame: FC = () => {
             fontStyle={`italic`}
             fontFamily={`Cormorant Garamond`}
           >
-            {`[name: Wake up by 4:30 am] [utc: UTC+9]`}
+            {`[name: Wake up by 4:30 am] [timezone: KST] [utc: (UTC+9)]`}
           </Typography>
           <RefreshButton />
         </Stack>
