@@ -21,6 +21,7 @@ const ActivityCalendarFrame: FC<Props> = ({ id }) => {
   }, [onGetActionGroupById])
 
   const onPost = useRecoilCallback(
+    // TODO: Write a hook with loading state
     ({ set }) =>
       async () => {
         try {
