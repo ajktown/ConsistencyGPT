@@ -2,10 +2,11 @@ import { FC, useCallback } from 'react'
 import { Stack, Typography } from '@mui/material'
 import StyledCloudRefresher from '@/atoms/StyledCloudRefresher'
 import { useActionGroupById } from '@/hooks/action-group/use-action-group-by-id.hook'
-import { useRecoilValue } from 'recoil'
+import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { actionGroupFamily } from '@/recoil/action-groups/action-groups.state'
 import ActivityCalendarById from '../molecule_activity_calendar/index.by-id'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+import { postActionByActionGroupId } from '@/api/action-groups/post-action-by-action-group-id.api'
 
 interface Props {
   id: string
@@ -18,6 +19,17 @@ const ActivityCalendarFrame: FC<Props> = ({ id }) => {
     // run all together
     await Promise.all([onGetActionGroupById()])
   }, [onGetActionGroupById])
+
+  const onPost = useRecoilCallback(
+    ({ set }) =>
+      async () => {
+        try {
+          const [data] = await postActionByActionGroupId(id)
+          set(actionGroupFamily(data.props.id), data)
+        } catch {}
+      },
+    [id],
+  )
 
   return (
     <Stack width="100%" alignItems="center">
@@ -39,7 +51,7 @@ const ActivityCalendarFrame: FC<Props> = ({ id }) => {
         {!actionGroup?.isOpened && <ActivityCalendarById id={id} />}
         {actionGroup?.isOpened && (
           <Stack alignItems={`center`} direction={`row`}>
-            <StyledTextButtonAtom title="Post Action" />
+            <StyledTextButtonAtom title="Post Action" onClick={onPost} />
             <StyledTextButtonAtom title="Cannot commit today" />
           </Stack>
         )}
