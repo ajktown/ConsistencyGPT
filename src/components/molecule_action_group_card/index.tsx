@@ -11,7 +11,7 @@ import { postActionByActionGroupId } from '@/api/action-groups/post-action-by-ac
 interface Props {
   id: string
 }
-const ActivityCalendarFrame: FC<Props> = ({ id }) => {
+const ActionGroupCard: FC<Props> = ({ id }) => {
   const actionGroup = useRecoilValue(actionGroupFamily(id))
   const onGetActionGroupById = useActionGroupById(id)
 
@@ -62,4 +62,4 @@ const ActivityCalendarFrame: FC<Props> = ({ id }) => {
   )
 }
 
-export default ActivityCalendarFrame
+export default ActionGroupCard
