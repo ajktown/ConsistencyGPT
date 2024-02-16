@@ -29,7 +29,7 @@ const ActivityCalendarFrame: FC<Props> = ({ id }) => {
             fontFamily={`Cormorant Garamond`}
           >
             {actionGroup
-              ? `Your consistency for "${actionGroup.props.name}" this year`
+              ? `"${actionGroup.props.task}" before ${actionGroup.props.closeAt}`
               : `Unknown Consistency`}
           </Typography>
           <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
