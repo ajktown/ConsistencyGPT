@@ -2,9 +2,12 @@ import axios from 'axios'
 import { CustomizedAxiosResponse } from '../index.interface'
 
 interface GetActionGroupIds {
-  ids: string[]
+  actionGroupIds: string[]
 }
 
+/**
+ * The ritual group is not yet developed; cannot be modified yet
+ */
 export const getActionGroupIds = async (): Promise<
   CustomizedAxiosResponse<GetActionGroupIds>
 > => {

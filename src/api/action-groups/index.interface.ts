@@ -38,4 +38,5 @@ export interface GetActionGroupRes {
   actionsLength: number
   isTodayHandled: boolean
   totalCount: number
+  isOpened: boolean
 }

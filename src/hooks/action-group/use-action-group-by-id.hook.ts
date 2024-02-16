@@ -1,8 +1,5 @@
 import { geActionGroupByIdApi } from '@/api/action-groups/get-action-group-by-id.api'
-import {
-  actionGroupDailyPostWordChallengeState,
-  actionGroupFamily,
-} from '@/recoil/action-groups/action-groups.state'
+import { actionGroupFamily } from '@/recoil/action-groups/action-groups.state'
 import { useRecoilCallback } from 'recoil'
 
 export const useActionGroupById = (id: string) => {
@@ -13,11 +10,10 @@ export const useActionGroupById = (id: string) => {
           const [res] = await geActionGroupByIdApi({ id })
           set(actionGroupFamily(id), res)
         } catch {
-          set(actionGroupDailyPostWordChallengeState, null)
+          set(actionGroupFamily(id), null)
         }
       },
     [id],
   )
-
   return onGetActionGroupById
 }

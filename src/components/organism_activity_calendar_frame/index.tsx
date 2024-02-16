@@ -5,6 +5,7 @@ import { useActionGroupById } from '@/hooks/action-group/use-action-group-by-id.
 import { useRecoilValue } from 'recoil'
 import { actionGroupFamily } from '@/recoil/action-groups/action-groups.state'
 import ActivityCalendarById from '../molecule_activity_calendar/index.by-id'
+import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 
 interface Props {
   id: string
@@ -35,7 +36,13 @@ const ActivityCalendarFrame: FC<Props> = ({ id }) => {
           <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
         </Stack>
         {/* Body */}
-        <ActivityCalendarById id={id} />
+        {!actionGroup?.isOpened && <ActivityCalendarById id={id} />}
+        {actionGroup?.isOpened && (
+          <Stack alignItems={`center`} direction={`row`}>
+            <StyledTextButtonAtom title="Post Action" />
+            <StyledTextButtonAtom title="Cannot commit today" />
+          </Stack>
+        )}
         {/* Dialog */}
       </Stack>
     </Stack>
