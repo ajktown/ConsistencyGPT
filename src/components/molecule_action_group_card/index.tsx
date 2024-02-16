@@ -1,5 +1,5 @@
 import { FC, useCallback } from 'react'
-import { Stack, Typography } from '@mui/material'
+import { Card, Stack, Typography } from '@mui/material'
 import StyledCloudRefresher from '@/atoms/StyledCloudRefresher'
 import { useActionGroupById } from '@/hooks/action-group/use-action-group-by-id.hook'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
@@ -33,8 +33,8 @@ const ActionGroupCard: FC<Props> = ({ id }) => {
   )
 
   return (
-    <Stack width="100%" alignItems="center">
-      <Stack>
+    <Card>
+      <Stack m={3}>
         {/* Header */}
         <Stack alignItems="center" direction={`row`} spacing={0.5} m={2}>
           <Typography
@@ -58,7 +58,7 @@ const ActionGroupCard: FC<Props> = ({ id }) => {
         )}
         {/* Dialog */}
       </Stack>
-    </Stack>
+    </Card>
   )
 }
 

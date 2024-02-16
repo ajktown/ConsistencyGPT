@@ -6,6 +6,7 @@ import { useRecoilValue } from 'recoil'
 import ActionGroupCard from '@/components/molecule_action_group_card'
 import { useRitual } from '@/hooks/action-group/use-action-group-ids.hook'
 import StyledCloudRefresher from '@/atoms/StyledCloudRefresher'
+import { Stack } from '@mui/material'
 
 const HomeLayout: FC = () => {
   const onGetRitual = useRitual()
@@ -22,9 +23,11 @@ const HomeLayout: FC = () => {
       <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
       <ErrorApiConnectionFail />
       <FirstTimeUserWelcomeMessage />
-      {actionGroupIds.map((id) => (
-        <ActionGroupCard key={id} id={id} />
-      ))}
+      <Stack alignItems={`center`} spacing={1}>
+        {actionGroupIds.map((id) => (
+          <ActionGroupCard key={id} id={id} />
+        ))}
+      </Stack>
     </Fragment>
   )
 }
