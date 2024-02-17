@@ -3,6 +3,7 @@ import { FC } from 'react'
 import ReactActivityCalendar from 'react-activity-calendar'
 import { useRecoilValue } from 'recoil'
 import ActivityCalendarUnknown from './index.unknown'
+import { ActionGroupFixedId } from '@/constants/action-group.constant'
 
 // TODO: The post consistency will use the same here
 interface Props {
@@ -13,7 +14,12 @@ const ActivityCalendarById: FC<Props> = ({ id }) => {
 
   if (actionGroup === null) return <ActivityCalendarUnknown />
   if (actionGroup === undefined) return null
-  if (actionGroup.isOpened && !actionGroup.isTodayHandled) return null
+  if (
+    actionGroup.isOpened &&
+    !actionGroup.isTodayHandled &&
+    actionGroup.props.id !== ActionGroupFixedId.DailyPostWordChallenge
+  )
+    return null
 
   return (
     <ReactActivityCalendar

@@ -1,5 +1,6 @@
 import { postActionByActionGroupId } from '@/api/action-groups/post-action-by-action-group-id.api'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+import { ActionGroupFixedId } from '@/constants/action-group.constant'
 import { actionGroupFamily } from '@/recoil/action-groups/action-groups.state'
 import { Stack } from '@mui/material'
 import { FC } from 'react'
@@ -24,6 +25,8 @@ const ActionGroupCardButton: FC<Props> = ({ id }) => {
   )
 
   if (!actionGroup?.isOpened || actionGroup.isTodayHandled) return null
+  if (actionGroup.props.id === ActionGroupFixedId.DailyPostWordChallenge)
+    return null
 
   return (
     <Stack alignItems={`center`} direction={`row`}>

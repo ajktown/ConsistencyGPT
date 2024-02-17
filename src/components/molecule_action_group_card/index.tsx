@@ -5,6 +5,7 @@ import { useActionGroupById } from '@/hooks/action-group/use-action-group-by-id.
 import ActivityCalendarById from '../molecule_activity_calendar/index.by-id'
 import ActionGroupCardButton from './index.buttons'
 import ActionGroupCardTitle from './index.title'
+import ActionGroupCardSpecialMessage from './index.special-message'
 
 interface Props {
   id: string
@@ -28,6 +29,7 @@ const ActionGroupCard: FC<Props> = ({ id }) => {
         {/* Body */}
         <ActivityCalendarById id={id} />
         <ActionGroupCardButton id={id} />
+        <ActionGroupCardSpecialMessage id={id} />
         {/* Dialog */}
       </Stack>
     </Card>
