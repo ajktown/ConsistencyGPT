@@ -12,4 +12,7 @@ export const timeHandler = {
   isWithinDaysAgo: (nDaysAgo: number, givenDate: JsDateAccepter) => {
     return nDaysAgo === timeHandler.getDaysAgo(givenDate)
   },
+  getPrettyDate: (given: JsDateAccepter): string => {
+    return new Date(given).toLocaleTimeString(`Seoul`)
+  },
 }
