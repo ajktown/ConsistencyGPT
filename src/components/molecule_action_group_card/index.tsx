@@ -7,6 +7,7 @@ import { actionGroupFamily } from '@/recoil/action-groups/action-groups.state'
 import ActivityCalendarById from '../molecule_activity_calendar/index.by-id'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { postActionByActionGroupId } from '@/api/action-groups/post-action-by-action-group-id.api'
+import { timeHandler } from '@/handlers/time.handler'
 
 interface Props {
   id: string
@@ -43,7 +44,7 @@ const ActionGroupCard: FC<Props> = ({ id }) => {
             fontFamily={`Cormorant Garamond`}
           >
             {actionGroup
-              ? `"${actionGroup.props.task}" before ${new Date(actionGroup.props.closeAt).toLocaleTimeString(`Seoul`)}`
+              ? `"${actionGroup.props.task}" between ${timeHandler.getPrettyDate(actionGroup.props.openAt)} ~ ${timeHandler.getPrettyDate(actionGroup.props.closeAt)}`
               : `Unknown Consistency`}
           </Typography>
           <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
