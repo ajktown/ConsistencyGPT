@@ -32,11 +32,18 @@ export interface IActionGroup extends IActionGroupInput {
   utc: string // i.e) +9:00 (timezone is private to shared data)
 }
 
+type IsTodaySuccessful =
+  | true // isTodayHandled
+  | false // isPassed && !isTodayHandled
+  | null // isPassed
+
 export interface GetActionGroupRes {
   props: IActionGroup
-  actions: IActionDerived[]
   actionsLength: number
   isTodayHandled: boolean
   totalCount: number
-  isOpened: boolean
+  isOpened: boolean // check if current time is opened to post action
+  isPassed: boolean // check if time has already passed
+  isTodaySuccessful: IsTodaySuccessful
+  actions: IActionDerived[]
 }
