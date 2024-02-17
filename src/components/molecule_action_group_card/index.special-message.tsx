@@ -1,15 +1,19 @@
+import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { ActionGroupFixedId } from '@/constants/action-group.constant'
+import { useOpenNewTab } from '@/hooks/use-open-new-tab'
 import { envLambda } from '@/lambdas/get-env.lambda'
 import { actionGroupFamily } from '@/recoil/action-groups/action-groups.state'
 import { Stack, Typography } from '@mui/material'
-import { FC, Fragment } from 'react'
+import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
 
 interface Props {
   id: string
 }
+const url = envLambda.getWordnoteUrl()
 const ActionGroupCardSpecialMessage: FC<Props> = ({ id }) => {
   const actionGroup = useRecoilValue(actionGroupFamily(id))
+  const onOpenNewTab = useOpenNewTab(url)
 
   if (actionGroup?.props.id !== ActionGroupFixedId.DailyPostWordChallenge)
     return null
@@ -27,8 +31,9 @@ const ActionGroupCardSpecialMessage: FC<Props> = ({ id }) => {
         {`It seems like you have not added your daily word yet. Consistency is the key in your success.`}
       </Typography>
       <Typography fontFamily={`Cormorant Garamond`}>
-        {`Please go visit ${envLambda.getWordnoteUrl()} and add a word for today.`}
+        {`Please go visit ${url} and add a word for today.`}
       </Typography>
+      <StyledTextButtonAtom title={`Visit ${url}`} onClick={onOpenNewTab} />
     </Stack>
   )
 }
