@@ -7,6 +7,7 @@ import ActionGroupCard from '@/components/molecule_action_group_card'
 import { useRitual } from '@/hooks/action-group/use-action-group-ids.hook'
 import StyledCloudRefresher from '@/atoms/StyledCloudRefresher'
 import { Stack } from '@mui/material'
+import { ActionGroupFixedId } from '@/constants/action-group.constant'
 
 const HomeLayout: FC = () => {
   const onGetRitual = useRitual()
@@ -24,6 +25,7 @@ const HomeLayout: FC = () => {
       <ErrorApiConnectionFail />
       <FirstTimeUserWelcomeMessage />
       <Stack alignItems={`center`} spacing={1}>
+        <ActionGroupCard id={ActionGroupFixedId.DailyPostWordChallenge} />
         {actionGroupIds.map((id) => (
           <ActionGroupCard key={id} id={id} />
         ))}

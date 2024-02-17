@@ -1,5 +1,4 @@
 import { getActionGroupIds as getRitualById } from '@/api/action-groups/get-action-group-ids.api'
-import { ActionGroupFixedId } from '@/constants/action-group.constant'
 import { actionGroupIdsState } from '@/recoil/action-groups/action-groups.state'
 import { useRecoilCallback } from 'recoil'
 
@@ -9,10 +8,7 @@ export const useRitual = () => {
       async () => {
         try {
           const [res] = await getRitualById()
-          set(actionGroupIdsState, [
-            ...res.actionGroupIds,
-            ActionGroupFixedId.DailyPostWordChallenge,
-          ])
+          set(actionGroupIdsState, res.actionGroupIds)
         } catch {
           set(actionGroupIdsState, [])
         }
