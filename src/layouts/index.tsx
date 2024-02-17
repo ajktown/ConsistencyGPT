@@ -4,13 +4,13 @@ import FirstTimeUserWelcomeMessage from '@/components/molecule_first_time_user_w
 import { actionGroupIdsState } from '@/recoil/action-groups/action-groups.state'
 import { useRecoilValue } from 'recoil'
 import ActionGroupCard from '@/components/molecule_action_group_card'
-import { useRitual } from '@/hooks/action-group/use-action-group-ids.hook'
+import { useRituals } from '@/hooks/ritual/use-rituals.hook'
 import StyledCloudRefresher from '@/atoms/StyledCloudRefresher'
 import { Stack } from '@mui/material'
 import { ActionGroupFixedId } from '@/constants/action-group.constant'
 
 const HomeLayout: FC = () => {
-  const onGetRitual = useRitual()
+  const onGetRitual = useRituals()
 
   const onClickRefresh = useCallback(async () => {
     // run all together
