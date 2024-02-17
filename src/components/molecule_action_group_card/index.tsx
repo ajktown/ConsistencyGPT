@@ -26,11 +26,11 @@ const ActionGroupCard: FC<Props> = ({ id }) => {
           <ActionGroupCardTitle id={id} />
           <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
         </Stack>
-        {/* Body */}
-        <ActivityCalendarById id={id} />
-        <ActionGroupCardButton id={id} />
-        <ActionGroupCardSpecialMessage id={id} />
-        {/* Dialog */}
+        <Stack alignItems="center">
+          <ActivityCalendarById id={id} />
+          <ActionGroupCardButton id={id} />
+          <ActionGroupCardSpecialMessage id={id} />
+        </Stack>
       </Stack>
     </Card>
   )
