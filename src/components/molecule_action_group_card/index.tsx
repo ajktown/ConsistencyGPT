@@ -43,7 +43,7 @@ const ActionGroupCard: FC<Props> = ({ id }) => {
             fontFamily={`Cormorant Garamond`}
           >
             {actionGroup
-              ? `"${actionGroup.props.task}" before ${actionGroup.props.closeAt}`
+              ? `"${actionGroup.props.task}" before ${new Date(actionGroup.props.closeAt).toLocaleTimeString(`Seoul`)}`
               : `Unknown Consistency`}
           </Typography>
           <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
