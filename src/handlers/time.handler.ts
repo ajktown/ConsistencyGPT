@@ -13,6 +13,6 @@ export const timeHandler = {
     return nDaysAgo === timeHandler.getDaysAgo(givenDate)
   },
   getPrettyDate: (given: JsDateAccepter): string => {
-    return new Date(given).toLocaleTimeString(`Seoul`)
+    return new Date(given).toLocaleTimeString(`Seoul`, { timeStyle: `short` })
   },
 }
