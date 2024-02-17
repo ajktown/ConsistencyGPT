@@ -7,6 +7,7 @@ import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import Image from 'next/image'
 import EndUserAvatar from '@/components/atom_user_avatar/index.end-user'
 import PostActionGroupDialog from '@/components/dialog_post_action_group'
+import RitualsFrameRefreshButton from '@/components/organism_rituals_frame/index.refresh-button'
 
 // TODO: Move this to non-molecules.
 // TODO: Make this getting the children, create a new component Appbar and use it for the pages
@@ -46,6 +47,7 @@ const StyledAppbarMolecule: FC<Props> = ({ onClickAppMenu, ...props }) => {
           </Typography>
           <Box pr={2} />
           <Box flexGrow={1} />
+          <RitualsFrameRefreshButton />
           <PostActionGroupDialog />
           <EndUserAvatar />
         </Toolbar>
