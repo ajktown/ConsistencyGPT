@@ -6,14 +6,15 @@ import StyledDialog from '@/organisms/StyledDialog'
 import { DialogActions, DialogContent, DialogTitle, Stack } from '@mui/material'
 import React, { useCallback, useState } from 'react'
 import WarningIcon from '@mui/icons-material/Warning'
-import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred'
+import WarningInfoIcon from '@mui/icons-material/ReportGmailerrorred'
+
 const PostActionGroupDialog = () => {
   const [isOpen, setOpen] = useState(false)
   const [task, setTask] = useState(``)
   const [fromTime, setFromTime] = useState(`0`)
   const [toTime, setToTime] = useState(`1440`)
 
-  const onPostActionGroup = usePostActionGroup()
+  const [loading, onPostActionGroup] = usePostActionGroup()
 
   const onPost = useCallback(async () => {
     try {
@@ -60,7 +61,7 @@ const PostActionGroupDialog = () => {
             label={`Until Time Minutes: 1~1440`}
           />
           <StyledTextWithIconHead
-            prefixIcon={<ReportGmailerrorredIcon fontSize="small" />}
+            prefixIcon={<WarningInfoIcon fontSize="small" />}
             textProps={{
               fontFamily: `Cormorant Garamond`,
               variant: `caption`,
@@ -69,7 +70,7 @@ const PostActionGroupDialog = () => {
             title={`AJK Town knows the UI is not ready yet. If FromTime == 240 (4am). If FromTime == 1200 (8pm).`}
           />
           <StyledTextWithIconHead
-            prefixIcon={<ReportGmailerrorredIcon fontSize="small" />}
+            prefixIcon={<WarningInfoIcon fontSize="small" />}
             textProps={{
               fontFamily: `Cormorant Garamond`,
               variant: `caption`,
@@ -78,7 +79,7 @@ const PostActionGroupDialog = () => {
             title={`Sorry for the inconvenience. The time picker is coming up soon!`}
           />
           <StyledTextWithIconHead
-            prefixIcon={<ReportGmailerrorredIcon fontSize="small" />}
+            prefixIcon={<WarningInfoIcon fontSize="small" />}
             textProps={{
               fontFamily: `Cormorant Garamond`,
               variant: `caption`,
@@ -101,6 +102,7 @@ const PostActionGroupDialog = () => {
         <StyledTextButtonAtom
           title="Add"
           onClick={onPost}
+          isLoading={loading}
           isDisabled={
             task.trim().length === 0 ||
             isNaN(parseInt(fromTime)) ||
