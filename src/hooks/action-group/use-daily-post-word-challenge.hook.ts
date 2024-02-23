@@ -1,5 +1,6 @@
 import { getActionGroupDailyPostWordChallengeApi } from '@/api/action-groups/get-action-group-daily-post-word-challenge.api'
-import { actionGroupDailyPostWordChallengeState } from '@/recoil/action-groups/action-groups.state'
+import { ActionGroupFixedId } from '@/constants/action-group.constant'
+import { actionGroupFamily } from '@/recoil/action-groups/action-groups.state'
 import { useRecoilCallback } from 'recoil'
 
 export const useActionGroupDailyPostWordWordChallenge = () => {
@@ -8,9 +9,12 @@ export const useActionGroupDailyPostWordWordChallenge = () => {
       async () => {
         try {
           const [res] = await getActionGroupDailyPostWordChallengeApi()
-          set(actionGroupDailyPostWordChallengeState, res)
+          set(actionGroupFamily(ActionGroupFixedId.DailyPostWordChallenge), res)
         } catch {
-          set(actionGroupDailyPostWordChallengeState, null)
+          set(
+            actionGroupFamily(ActionGroupFixedId.DailyPostWordChallenge),
+            null,
+          )
         }
       },
     [],

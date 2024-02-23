@@ -1,26 +1,49 @@
+import { Level } from 'react-activity-calendar'
 import { DataBasics } from '../index.interface'
 
-type IActionLevel = 0 | 1 | 2 | 3 | 4
+export type IActionLevel = Level
 
-interface IAction extends DataBasics {
+export interface IActionInput extends DataBasics {
   id: string
   ownerId: string
   groupId: string
-  message: string
+}
+
+export interface IAction extends IActionInput {
+  yyyymmdd: string // the date in YYYY-MM-DD format
 }
 
 export interface IActionDerived extends IAction {
-  yyyymmdd: string
   level: IActionLevel // level is 100% decided by the ActionGroup
 }
 
-export interface IActionGroup extends DataBasics {
-  name: string
+export interface IActionGroupInput extends DataBasics {
+  id: string
+  ownerId: string
+  task: string
+  timezone: string
+  openMinsAfter: number
+  closeMinsBefore: number
 }
+
+export interface IActionGroup extends IActionGroupInput {
+  openAt: Date
+  closeAt: Date
+  utc: string // i.e) +9:00 (timezone is private to shared data)
+}
+
+type IsTodaySuccessful =
+  | true // isTodayHandled
+  | false // isPassed && !isTodayHandled
+  | null // isPassed
 
 export interface GetActionGroupRes {
   props: IActionGroup
-  actions: IActionDerived[]
+  actionsLength: number
   isTodayHandled: boolean
   totalCount: number
+  isOpened: boolean // check if current time is opened to post action
+  isPassed: boolean // check if time has already passed
+  isTodaySuccessful: IsTodaySuccessful
+  actions: IActionDerived[]
 }
