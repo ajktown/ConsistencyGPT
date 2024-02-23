@@ -1,17 +1,17 @@
 import { LocalizationProvider, TimePicker } from '@mui/x-date-pickers'
 import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon'
-import { FC, Dispatch } from 'react'
+import { DateTime } from 'luxon'
+import { FC } from 'react'
 
-type TimeData = Date | null
 interface Props {
-  useStateTimePick: [TimeData, Dispatch<React.SetStateAction<TimeData>>]
+  label?: string
+  time: null | DateTime
+  onChange: (time: null | DateTime) => void
 }
-const StyledTimePicker: FC<Props> = ({ useStateTimePick }) => {
-  const [time, setTime] = useStateTimePick
-
+const StyledTimePicker: FC<Props> = ({ label, time, onChange }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterLuxon}>
-      <TimePicker label="Controlled picker" value={time} onChange={setTime} />
+      <TimePicker label={label} value={time} onChange={onChange} />
     </LocalizationProvider>
   )
 }
