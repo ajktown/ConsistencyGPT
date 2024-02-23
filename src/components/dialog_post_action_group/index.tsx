@@ -7,30 +7,37 @@ import { DialogActions, DialogContent, DialogTitle, Stack } from '@mui/material'
 import React, { useCallback, useState } from 'react'
 import WarningIcon from '@mui/icons-material/Warning'
 import WarningInfoIcon from '@mui/icons-material/ReportGmailerrorred'
+import StyledTimePicker from '@/atoms/StyledTimePicker'
+import { DateTime } from 'luxon'
 
 const PostActionGroupDialog = () => {
   const [isOpen, setOpen] = useState(false)
   const [task, setTask] = useState(``)
-  const [fromTime, setFromTime] = useState(`0`)
-  const [toTime, setToTime] = useState(`1440`)
+  const [startingTime, setStartingTime] = useState<null | DateTime>(null)
+  const [endingTime, setEndingTime] = useState<null | DateTime>(null)
 
   const [loading, onPostActionGroup] = usePostActionGroup()
 
   const onPost = useCallback(async () => {
+    if (!startingTime || !endingTime) return // cannot happen
+
     try {
       await onPostActionGroup({
         task,
         timezone: `Asia/Seoul`,
-        openMinsAfter: parseInt(fromTime),
-        closeMinsAfter: parseInt(toTime),
+        openMinsAfter: startingTime.hour * 60 + startingTime.minute,
+        closeMinsAfter: endingTime.hour * 60 + endingTime.minute,
       })
+
       // reset:
       setTask(``)
-      setFromTime(`0`)
-      setToTime(`1440`)
+      setEndingTime(null)
+      setStartingTime(null)
+
+      // Close dialog:
       setOpen(false)
     } catch {}
-  }, [task, fromTime, toTime, onPostActionGroup])
+  }, [startingTime, endingTime, task, onPostActionGroup])
 
   if (!isOpen)
     return (
@@ -50,24 +57,15 @@ const PostActionGroupDialog = () => {
             onChange={setTask}
             label={`Your Task Name`}
           />
-          <StyledTextField
-            value={fromTime}
-            onChange={setFromTime}
-            label={`From Time Minutes: Between 0 ~ 1439`}
+          <StyledTimePicker
+            label={`Commit Starting Time`}
+            time={startingTime}
+            onChange={setStartingTime}
           />
-          <StyledTextField
-            value={toTime}
-            onChange={setToTime}
-            label={`Until Time Minutes: 1~1440`}
-          />
-          <StyledTextWithIconHead
-            prefixIcon={<WarningInfoIcon fontSize="small" />}
-            textProps={{
-              fontFamily: `Cormorant Garamond`,
-              variant: `caption`,
-              fontStyle: `italic`,
-            }}
-            title={`AJK Town knows the UI is not ready yet. If FromTime == 240 (4am). If FromTime == 1200 (8pm).`}
+          <StyledTimePicker
+            label={`Commit Ending Time`}
+            time={endingTime}
+            onChange={setEndingTime}
           />
           <StyledTextWithIconHead
             prefixIcon={<WarningInfoIcon fontSize="small" />}
@@ -76,16 +74,7 @@ const PostActionGroupDialog = () => {
               variant: `caption`,
               fontStyle: `italic`,
             }}
-            title={`Sorry for the inconvenience. The time picker is coming up soon!`}
-          />
-          <StyledTextWithIconHead
-            prefixIcon={<WarningInfoIcon fontSize="small" />}
-            textProps={{
-              fontFamily: `Cormorant Garamond`,
-              variant: `caption`,
-              fontStyle: `italic`,
-            }}
-            title={`fromTime must be smaller than toTime.`}
+            title={`Commit Starting Time must be smaller than Commit Ending Time.`}
           />
         </Stack>
       </DialogContent>
@@ -104,10 +93,10 @@ const PostActionGroupDialog = () => {
           onClick={onPost}
           isLoading={loading}
           isDisabled={
-            task.trim().length === 0 ||
-            isNaN(parseInt(fromTime)) ||
-            isNaN(parseInt(toTime)) ||
-            parseInt(toTime) <= parseInt(fromTime)
+            !task ||
+            !startingTime ||
+            !endingTime ||
+            endingTime.valueOf() <= startingTime.valueOf()
           }
         />
       </DialogActions>
