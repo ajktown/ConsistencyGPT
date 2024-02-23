@@ -8,6 +8,7 @@ import Image from 'next/image'
 import EndUserAvatar from '@/components/atom_user_avatar/index.end-user'
 import PostActionGroupDialog from '@/components/dialog_post_action_group'
 import RitualsFrameRefreshButton from '@/components/organism_rituals_frame/index.refresh-button'
+import AppbarGitHubButtonPart from '../atom_appbar_parts/index.github_icon'
 
 const PRIVATE_TITLE = `Consistency GPT (Beta)`
 const PRIVATE_TITLE_LOGO = `/favicon_archived/android-chrome-512x512.png`
@@ -39,6 +40,9 @@ const Appbar: FC<Props> = ({ children }) => {
           <Box pr={2} />
           <Box flexGrow={1} />
           <RitualsFrameRefreshButton />
+          <Box pr={1} />
+          <AppbarGitHubButtonPart />
+          <Box pr={1} />
           <PostActionGroupDialog />
           <EndUserAvatar />
         </Toolbar>
