@@ -3,7 +3,7 @@ import { useOpenNewTab } from '@/hooks/use-open-new-tab'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 
-const link = `https://github.com/ajktown/wordnote`
+const link = `https://github.com/ajktown/ConsistencyGPT`
 
 const AppbarGitHubButtonPart: FC = () => {
   const onOpenNewTab = useOpenNewTab(link)
