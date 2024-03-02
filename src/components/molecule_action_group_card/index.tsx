@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react'
+import { FC, Fragment, useCallback } from 'react'
 import { Card, Stack } from '@mui/material'
 import StyledCloudRefresher from '@/atoms/StyledCloudRefresher'
 import { useActionGroupById } from '@/hooks/action-group/use-action-group-by-id.hook'
@@ -9,8 +9,9 @@ import ActionGroupCardSpecialMessage from './index.special-message'
 
 interface Props {
   id: string
+  nickname?: string
 }
-const ActionGroupCard: FC<Props> = ({ id }) => {
+const ActionGroupCard: FC<Props> = ({ id, nickname }) => {
   const onGetActionGroupById = useActionGroupById(id)
 
   const onClickRefresh = useCallback(async () => {
@@ -28,8 +29,12 @@ const ActionGroupCard: FC<Props> = ({ id }) => {
         </Stack>
         <Stack alignItems="center">
           <ActivityCalendarById id={id} />
-          <ActionGroupCardButton id={id} />
-          <ActionGroupCardSpecialMessage id={id} />
+          {!nickname && (
+            <Fragment>
+              <ActionGroupCardButton id={id} />
+              <ActionGroupCardSpecialMessage id={id} />
+            </Fragment>
+          )}
         </Stack>
       </Stack>
     </Card>

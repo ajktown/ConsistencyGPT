@@ -2,12 +2,15 @@ import StyledCloudRefresher from '@/atoms/StyledCloudRefresher'
 import { useRituals } from '@/hooks/ritual/use-rituals.hook'
 import { FC, useCallback } from 'react'
 
-const RitualsFrameRefreshButton: FC = () => {
+interface Props {
+  nickname?: string
+}
+const RitualsFrameRefreshButton: FC<Props> = ({ nickname }) => {
   const onGetRitual = useRituals()
   const onClickRefresh = useCallback(async () => {
     // run all together
-    await Promise.all([onGetRitual()])
-  }, [onGetRitual])
+    await Promise.all([onGetRitual(nickname)])
+  }, [nickname, onGetRitual])
 
   return <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
 }

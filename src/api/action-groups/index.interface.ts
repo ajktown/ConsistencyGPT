@@ -1,7 +1,6 @@
-import { Level } from 'react-activity-calendar'
 import { DataBasics } from '../index.interface'
 
-export type IActionLevel = Level
+export type IActionLevel = 0 | 1 | 2 | 3 | 4
 
 export interface IActionInput extends DataBasics {
   id: string

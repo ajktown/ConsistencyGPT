@@ -19,6 +19,7 @@ export const useDevSignIn = () => {
     try {
       await postAuthByDevTokenApi()
       await onGetAuthPrep()
+
       router.push(DEFAULT_MAIN_APP_PAGE)
     } catch {}
   }, [router, onGetAuthPrep])

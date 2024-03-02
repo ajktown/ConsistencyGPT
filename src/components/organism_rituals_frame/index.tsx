@@ -5,14 +5,19 @@ import ActionGroupCard from '@/components/molecule_action_group_card'
 import { Stack } from '@mui/material'
 import { ActionGroupFixedId } from '@/constants/action-group.constant'
 
-const RitualsFrame: FC = () => {
+interface Props {
+  nickname?: string
+}
+const RitualsFrame: FC<Props> = ({ nickname }) => {
   const actionGroupIds = useRecoilValue(actionGroupIdsState)
 
   return (
     <Stack alignItems={`center`} spacing={2} p={2}>
-      <ActionGroupCard id={ActionGroupFixedId.DailyPostWordChallenge} />
+      {!nickname && (
+        <ActionGroupCard id={ActionGroupFixedId.DailyPostWordChallenge} />
+      )}
       {actionGroupIds.map((id) => (
-        <ActionGroupCard key={id} id={id} />
+        <ActionGroupCard key={id} id={id} nickname={nickname} />
       ))}
     </Stack>
   )
