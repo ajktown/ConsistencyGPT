@@ -37,14 +37,15 @@ const Appbar: FC<Props> = ({ children, nickname }) => {
             fontFamily={`Cormorant Garamond`}
           >
             {PRIVATE_TITLE}
+            {nickname && ` - ${nickname}`}
           </Typography>
           <Box pr={2} />
           <Box flexGrow={1} />
           <RitualsFrameRefreshButton nickname={nickname} />
+          <Box pr={1} />
+          <AppbarGitHubButtonPart />
           {!nickname && (
             <Fragment>
-              <Box pr={1} />
-              <AppbarGitHubButtonPart />
               <Box pr={1} />
               <PostActionGroupDialog />
               <EndUserAvatar />
