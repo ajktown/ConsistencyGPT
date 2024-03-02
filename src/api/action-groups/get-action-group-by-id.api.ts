@@ -5,7 +5,7 @@ import { GetActionGroupRes } from './index.interface'
 interface ReqDTO {
   id: string
 }
-export const geActionGroupByIdApi = async (
+export const getActionGroupByIdApi = async (
   reqDto: ReqDTO,
 ): Promise<CustomizedAxiosResponse<GetActionGroupRes>> => {
   const url = `/v1/action-groups/${reqDto.id}`

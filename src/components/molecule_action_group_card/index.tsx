@@ -16,8 +16,8 @@ const ActionGroupCard: FC<Props> = ({ id, nickname }) => {
 
   const onClickRefresh = useCallback(async () => {
     // run all together
-    await Promise.all([onGetActionGroupById()])
-  }, [onGetActionGroupById])
+    await Promise.all([onGetActionGroupById(nickname)])
+  }, [nickname, onGetActionGroupById])
 
   return (
     <Card>
