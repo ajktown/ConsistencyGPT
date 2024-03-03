@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, Fragment } from 'react'
 import { AppBar, Box } from '@mui/material'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
@@ -13,9 +13,10 @@ import AppbarGitHubButtonPart from '../atom_appbar_parts/index.github_icon'
 const PRIVATE_TITLE = `Consistency GPT (Beta)`
 const PRIVATE_TITLE_LOGO = `/favicon_archived/android-chrome-512x512.png`
 interface Props {
+  nickname?: string
   children?: JSX.Element | JSX.Element[]
 }
-const Appbar: FC<Props> = ({ children }) => {
+const Appbar: FC<Props> = ({ children, nickname }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="info">
@@ -36,15 +37,20 @@ const Appbar: FC<Props> = ({ children }) => {
             fontFamily={`Cormorant Garamond`}
           >
             {PRIVATE_TITLE}
+            {nickname && ` - ${nickname}`}
           </Typography>
           <Box pr={2} />
           <Box flexGrow={1} />
-          <RitualsFrameRefreshButton />
+          <RitualsFrameRefreshButton nickname={nickname} />
           <Box pr={1} />
           <AppbarGitHubButtonPart />
-          <Box pr={1} />
-          <PostActionGroupDialog />
-          <EndUserAvatar />
+          {!nickname && (
+            <Fragment>
+              <Box pr={1} />
+              <PostActionGroupDialog />
+              <EndUserAvatar />
+            </Fragment>
+          )}
         </Toolbar>
       </AppBar>
       <Box height="calc(100vh - 48px)">{children}</Box>

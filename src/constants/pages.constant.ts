@@ -1,6 +1,7 @@
 export enum PageConst {
   Home = `/`,
   Welcome = `/welcome`,
+  Users = `/users`,
   SignIn = `/signin`,
   SignUp = `/signup`,
 }
