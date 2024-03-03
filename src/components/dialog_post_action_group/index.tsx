@@ -1,6 +1,6 @@
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import StyledTextField from '@/atoms/StyledTextField'
-import StyledTextWithIconHead from '@/atoms/StyledTextWithPrefixButton'
+import StyledTextWithPrefixButton from '@/atoms/StyledTextWithPrefixButton'
 import { usePostActionGroup } from '@/hooks/action-group/use-post-action-group.hook'
 import StyledDialog from '@/organisms/StyledDialog'
 import { DialogActions, DialogContent, DialogTitle, Stack } from '@mui/material'
@@ -67,7 +67,7 @@ const PostActionGroupDialog = () => {
             time={endingTime}
             onChange={setEndingTime}
           />
-          <StyledTextWithIconHead
+          <StyledTextWithPrefixButton
             prefixIcon={<WarningInfoIcon fontSize="small" />}
             textProps={{
               fontFamily: `Cormorant Garamond`,
@@ -79,7 +79,7 @@ const PostActionGroupDialog = () => {
         </Stack>
       </DialogContent>
       <DialogActions>
-        <StyledTextWithIconHead
+        <StyledTextWithPrefixButton
           prefixIcon={<WarningIcon color="warning" fontSize="small" />}
           textProps={{
             fontFamily: `Cormorant Garamond`,

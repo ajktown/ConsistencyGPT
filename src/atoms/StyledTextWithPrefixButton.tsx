@@ -10,7 +10,7 @@ interface Props {
   textProps: TypographyProps
   title?: string
 }
-const StyledTextWithIconHead: FC<Props> = ({
+const StyledTextWithPrefixButton: FC<Props> = ({
   prefixIcon,
   textProps,
   title,
@@ -29,4 +29,4 @@ const StyledTextWithIconHead: FC<Props> = ({
   )
 }
 
-export default StyledTextWithIconHead
+export default StyledTextWithPrefixButton

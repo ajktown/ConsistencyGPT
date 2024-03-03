@@ -8,7 +8,7 @@ import { FC, Fragment } from 'react'
 import { useRecoilValue } from 'recoil'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import WarningIcon from '@mui/icons-material/Warning'
-import StyledTextWithIconHead from '@/atoms/StyledTextWithPrefixButton'
+import StyledTextWithPrefixButton from '@/atoms/StyledTextWithPrefixButton'
 interface Props {
   id: string
 }
@@ -22,7 +22,7 @@ const ActionGroupCardSpecialMessage: FC<Props> = ({ id }) => {
 
   if (actionGroup.isTodayHandled)
     return (
-      <StyledTextWithIconHead
+      <StyledTextWithPrefixButton
         prefixIcon={<CheckCircleOutlineIcon color="success" />}
         textProps={{
           fontFamily: `Cormorant Garamond`,
@@ -33,7 +33,7 @@ const ActionGroupCardSpecialMessage: FC<Props> = ({ id }) => {
 
   return (
     <Stack mt={1}>
-      <StyledTextWithIconHead
+      <StyledTextWithPrefixButton
         prefixIcon={<WarningIcon color="warning" />}
         textProps={{
           fontFamily: `Cormorant Garamond`,
