@@ -1,17 +1,17 @@
 import { Box, Typography, TypographyProps } from '@mui/material'
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 
 /**
  * Returns
  */
 
 interface Props {
-  prefixIcon: React.ReactNode
-  textProps: TypographyProps
+  headerIcon: ReactNode
+  textProps?: TypographyProps
   title?: string
 }
-const StyledTextWithPrefixButton: FC<Props> = ({
-  prefixIcon,
+const StyledTextWithHeaderIcon: FC<Props> = ({
+  headerIcon,
   textProps,
   title,
 }) => {
@@ -23,10 +23,10 @@ const StyledTextWithPrefixButton: FC<Props> = ({
       flexDirection="row"
       textAlign="center"
     >
-      {prefixIcon}
+      {headerIcon}
       <Typography {...textProps}>{title}</Typography>
     </Box>
   )
 }
 
-export default StyledTextWithPrefixButton
+export default StyledTextWithHeaderIcon
