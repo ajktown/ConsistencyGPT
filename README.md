@@ -2,6 +2,8 @@
 
 Master Your Daily Tasks with GitHub Commit Calendar-Style Tracking
 
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mlajkim)
+
 
 ## Table of Contents
 
