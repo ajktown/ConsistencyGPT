@@ -16,9 +16,17 @@ const EndUserAvatar: FC = () => {
   const onClickToAdminProfile = useCallback(() => {
     router.push(`/users/mlajkim`)
   }, [router])
+  const onClickBuyMeCoffee = useCallback(() => {
+    const url = `https://www.buymeacoffee.com/mlajkim`
+    window.open(url, `_blank`)
+  }, [])
 
   const menuItems: PropsMenuItem[] = useMemo(
     () => [
+      {
+        title: `Buy me coffee!`,
+        onClick: onClickBuyMeCoffee,
+      },
       {
         title: `To mlajkim's profile`,
         onClick: onClickToAdminProfile,
@@ -28,7 +36,7 @@ const EndUserAvatar: FC = () => {
         onClick: onSignOutApp,
       },
     ],
-    [onSignOutApp, onClickToAdminProfile],
+    [onSignOutApp, onClickToAdminProfile, onClickBuyMeCoffee],
   )
 
   return (
