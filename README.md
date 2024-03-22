@@ -12,6 +12,7 @@ Master Your Daily Tasks with GitHub Commit Calendar-Style Tracking
 - [Consistency GPT](#consistency-gpt)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
+  - [For Developers](#for-developers)
   - [Public Image](#public-image)
     - [Push image command](#push-image-command)
   - [About the starter of this project](#about-the-starter-of-this-project)
@@ -24,6 +25,9 @@ Master Your Daily Tasks with GitHub Commit Calendar-Style Tracking
 
 ## Overview
 ConsistencyGPT revolutionizes daily task management by integrating the familiar and motivational visual style of a GitHub commit calendar. Designed for individuals and teams who value consistency in their workflow, this app offers a unique and engaging way to track and scale daily tasks.
+
+## For Developers
+- [Developer guide](https://github.com/ajktown/docs/tree/main/dev_wordnote)
 
 ## Public Image
 
