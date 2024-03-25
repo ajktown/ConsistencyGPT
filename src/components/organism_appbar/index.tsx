@@ -9,14 +9,19 @@ import EndUserAvatar from '@/components/atom_user_avatar/index.end-user'
 import PostActionGroupDialog from '@/components/dialog_post_action_group'
 import RitualsFrameRefreshButton from '@/components/organism_rituals_frame/index.refresh-button'
 import AppbarGitHubButtonPart from '../atom_appbar_parts/index.github_icon'
+import useWindowSize from 'react-use/lib/useWindowSize'
 
 const PRIVATE_TITLE = `Consistency GPT (Beta)`
+const PRIVATE_SHORTER_TITLE = `CGT`
+const PRIVATE_TITLE_SHRINK_PIXELS = 500
 const PRIVATE_TITLE_LOGO = `/favicon_archived/android-chrome-512x512.png`
 interface Props {
   nickname?: string
   children?: JSX.Element | JSX.Element[]
 }
 const Appbar: FC<Props> = ({ children, nickname }) => {
+  const { width } = useWindowSize()
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="info">
@@ -30,15 +35,28 @@ const Appbar: FC<Props> = ({ children, nickname }) => {
             height={30}
             style={{ marginRight: 8 }}
           />
-          <Typography
-            variant="h6"
-            color="inherit"
-            component="div"
-            fontFamily={`Cormorant Garamond`}
-          >
-            {PRIVATE_TITLE}
-            {nickname && ` - ${nickname}`}
-          </Typography>
+          {width <= PRIVATE_TITLE_SHRINK_PIXELS && (
+            <Typography
+              variant="h6"
+              color="inherit"
+              component="div"
+              fontFamily={`Cormorant Garamond`}
+            >
+              {PRIVATE_SHORTER_TITLE}
+              {nickname && ` - ${nickname}`}
+            </Typography>
+          )}
+          {PRIVATE_TITLE_SHRINK_PIXELS < width && (
+            <Typography
+              variant="h6"
+              color="inherit"
+              component="div"
+              fontFamily={`Cormorant Garamond`}
+            >
+              {PRIVATE_TITLE}
+              {nickname && ` - ${nickname}`}
+            </Typography>
+          )}
           <Box pr={2} />
           <Box flexGrow={1} />
           <RitualsFrameRefreshButton nickname={nickname} />

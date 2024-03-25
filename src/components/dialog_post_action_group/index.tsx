@@ -9,8 +9,11 @@ import WarningIcon from '@mui/icons-material/Warning'
 import WarningInfoIcon from '@mui/icons-material/ReportGmailerrorred'
 import StyledTimePicker from '@/atoms/StyledTimePicker'
 import { DateTime } from 'luxon'
-
+import useWindowSize from 'react-use/lib/useWindowSize'
+import StyledIconButtonAtom from '@/atoms/StyledIconButton'
+import AddIcon from '@mui/icons-material/Add'
 const PostActionGroupDialog = () => {
+  const { width } = useWindowSize()
   const [isOpen, setOpen] = useState(false)
   const [task, setTask] = useState(``)
   const [startingTime, setStartingTime] = useState<null | DateTime>(null)
@@ -38,6 +41,14 @@ const PostActionGroupDialog = () => {
       setOpen(false)
     } catch {}
   }, [startingTime, endingTime, task, onPostActionGroup])
+
+  if (!isOpen && width < 700)
+    return (
+      <StyledIconButtonAtom
+        jsxElementButton={<AddIcon />}
+        onClick={() => setOpen(true)}
+      />
+    )
 
   if (!isOpen)
     return (
