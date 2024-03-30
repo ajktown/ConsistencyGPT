@@ -6,6 +6,7 @@ import ActivityCalendarById from '../molecule_activity_calendar/index.by-id'
 import ActionGroupCardButton from './index.buttons'
 import ActionGroupCardTitle from './index.title'
 import ActionGroupCardSpecialMessage from './index.special-message'
+import ActionGroupCardMoreOptions from './index.more-options'
 
 interface Props {
   id: string
@@ -26,6 +27,7 @@ const ActionGroupCard: FC<Props> = ({ id, nickname }) => {
         <Stack alignItems="center" direction={`row`} spacing={0.5} m={2}>
           <ActionGroupCardTitle id={id} />
           <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
+          <ActionGroupCardMoreOptions id={id} nickname={nickname} />
         </Stack>
         <Stack alignItems="center">
           <ActivityCalendarById id={id} />
