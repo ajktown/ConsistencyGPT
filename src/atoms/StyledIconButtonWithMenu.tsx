@@ -5,6 +5,7 @@ import StyledIconButtonAtom, {
 import { Menu, MenuItem } from '@mui/material'
 
 export interface PropsMenuItem {
+  id: string
   onClick: () => any
   title: string
   isDisabled?: boolean
@@ -32,6 +33,20 @@ const StyledIconButtonWithMenuAtom: FC<Props> = ({ menus, ...props }) => {
     [menus],
   )
 
+  const onClickMenu = useCallback(
+    async (e: MouseEvent<HTMLLIElement, globalThis.MouseEvent>) => {
+      // find the menu item
+      const id = e.currentTarget.id
+      const menuItem = menus.find((menu) => menu.id === id)
+      if (!menuItem) return
+
+      // close the menu
+      await menuItem.onClick()
+      onClose()
+    },
+    [menus, onClose],
+  )
+
   return (
     <Fragment>
       <StyledIconButtonAtom {...props} onClick={onClick} />
@@ -51,8 +66,9 @@ const StyledIconButtonWithMenuAtom: FC<Props> = ({ menus, ...props }) => {
       >
         {menus.map((menu) => (
           <MenuItem
+            id={menu.id}
             key={menu.title}
-            onClick={menu.onClick}
+            onClick={onClickMenu}
             disabled={menu.isDisabled}
           >
             {menu.title}

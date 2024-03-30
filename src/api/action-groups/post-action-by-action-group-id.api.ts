@@ -2,7 +2,7 @@ import axios from 'axios'
 import { CustomizedAxiosResponse } from '../index.interface'
 import { GetActionGroupRes } from './index.interface'
 
-export const postActionByActionGroupId = async (
+export const postActionByActionGroupIdApi = async (
   actionGroupId: string,
 ): Promise<CustomizedAxiosResponse<GetActionGroupRes>> => {
   const url = `/v1/action-groups/${actionGroupId}/actions`

@@ -24,14 +24,17 @@ const EndUserAvatar: FC = () => {
   const menuItems: PropsMenuItem[] = useMemo(
     () => [
       {
+        id: `buy_me_coffee`,
         title: `Buy me coffee!`,
         onClick: onClickBuyMeCoffee,
       },
       {
+        id: `to_mlajkim_profile`,
         title: `To mlajkim's profile`,
         onClick: onClickToAdminProfile,
       },
       {
+        id: `sign_out`,
         title: `Sign out`,
         onClick: onSignOutApp,
       },
