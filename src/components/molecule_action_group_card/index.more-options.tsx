@@ -16,6 +16,7 @@ const ActionGroupCardMoreOptions: FC<Props> = ({ id, nickname }) => {
     usePostActionByActionGroupId(id)
 
   const isOnClickCommitLateDisabled: boolean = useMemo(() => {
+    // TODO: Must use the API given derived state of the action instead (once api does it)
     if (!actionGroup) return true // disabled
     if (actionGroup.props.id === ActionGroupFixedId.DailyPostWordChallenge)
       return true // disabled

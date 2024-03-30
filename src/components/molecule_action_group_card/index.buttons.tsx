@@ -13,7 +13,7 @@ const ActionGroupCardButton: FC<Props> = ({ id }) => {
   const [loading, onPostActionByActionGroupId] =
     usePostActionByActionGroupId(id)
 
-  // TODO:
+  // TODO: Must use the API given derived state of the action instead (once api does it)
   if (!actionGroup?.isOpened || actionGroup.isTodayHandled) return null
   if (actionGroup.props.id === ActionGroupFixedId.DailyPostWordChallenge)
     return null
