@@ -1,7 +1,7 @@
 import { useRecoilCallback } from 'recoil'
 import { useState } from 'react'
 import { actionGroupFamily } from '@/recoil/action-groups/action-groups.state'
-import { postActionByActionGroupId } from '@/api/action-groups/post-action-by-action-group-id.api'
+import { postActionByActionGroupIdApi } from '@/api/action-groups/post-action-by-action-group-id.api'
 
 type UsePostActionByActionGroupId = [boolean, () => Promise<void>]
 export const usePostActionByActionGroupId = (
@@ -14,7 +14,7 @@ export const usePostActionByActionGroupId = (
       async () => {
         try {
           setLoading(true)
-          const [data] = await postActionByActionGroupId(actionGroupId)
+          const [data] = await postActionByActionGroupIdApi(actionGroupId)
           set(actionGroupFamily(data.props.id), data)
         } finally {
           setLoading(false)
