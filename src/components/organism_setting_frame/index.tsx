@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react'
+import { FC, useCallback, useState } from 'react'
 import { actionGroupIdsState } from '@/recoil/action-groups/action-groups.state'
 import { useRecoilValue } from 'recoil'
 import { List, ListItem, ListItemText, Stack } from '@mui/material'
@@ -12,6 +12,7 @@ import { usePatchRitual } from '@/hooks/ritual/use-patch-ritual.hook'
 const SettingFrame: FC = () => {
   const actionGroupIds = useRecoilValue(actionGroupIdsState)
   const onPatchRitual = usePatchRitual()
+  const [highlightedId, setHighlightedId] = useState<string | null>(null)
 
   const onClickArrow = useCallback(
     async (id: string, isUpward = true) => {
@@ -26,6 +27,10 @@ const SettingFrame: FC = () => {
         newActionGroupIds[index] = newActionGroupIds[index + newIndex]
         newActionGroupIds[index + newIndex] = tmp
         await onPatchRitual({ actionGroupIds: newActionGroupIds })
+
+        // highlight modified action group so that it is  easier to track:
+        setHighlightedId(id)
+        setTimeout(() => setHighlightedId(null), 1 * 1000) // 1 second
       } catch {}
     },
     [actionGroupIds, onPatchRitual],
@@ -38,6 +43,7 @@ const SettingFrame: FC = () => {
           <ListItem
             key={id}
             disableGutters
+            sx={{ bgcolor: highlightedId === id ? 'lightyellow' : 'inherit' }}
             secondaryAction={
               <Stack alignItems={'center'} direction="row">
                 <SettingFrameRefresher groupId={id} />
