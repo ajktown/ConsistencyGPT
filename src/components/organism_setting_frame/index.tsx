@@ -8,11 +8,19 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 import ActionGroupCardTitle from '../molecule_action_group_card/index.title'
 import { usePatchRitual } from '@/hooks/ritual/use-patch-ritual.hook'
+import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+import { useRouter } from 'next/router'
+import { PageConst } from '@/constants/pages.constant'
 
 const SettingFrame: FC = () => {
   const actionGroupIds = useRecoilValue(actionGroupIdsState)
   const onPatchRitual = usePatchRitual()
   const [highlightedId, setHighlightedId] = useState<string | null>(null)
+  const router = useRouter()
+
+  const onClickToHomePage = useCallback(() => {
+    router.push(PageConst.Home)
+  }, [router])
 
   const onClickArrow = useCallback(
     async (id: string, isUpward = true) => {
@@ -30,7 +38,7 @@ const SettingFrame: FC = () => {
 
         // highlight modified action group so that it is  easier to track:
         setHighlightedId(id)
-        setTimeout(() => setHighlightedId(null), 1 * 1000) // 1 second
+        setTimeout(() => setHighlightedId(null), 0.4 * 1000) // seconds
       } catch {}
     },
     [actionGroupIds, onPatchRitual],
@@ -38,6 +46,10 @@ const SettingFrame: FC = () => {
 
   return (
     <Stack alignItems={`center`} spacing={2} p={2}>
+      <StyledTextButtonAtom
+        title={`Back to main page`}
+        onClick={onClickToHomePage}
+      />
       <List sx={{ width: '100%', maxWidth: 700, bgcolor: 'background.paper' }}>
         {actionGroupIds.map((id, i) => (
           <ListItem
