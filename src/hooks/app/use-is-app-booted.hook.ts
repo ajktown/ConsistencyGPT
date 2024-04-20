@@ -16,8 +16,9 @@ export const useIsAppBooted = (): boolean => {
     try {
       const isSignedIn = (await onGetAuthPrep())?.isSignedIn
 
-      // if starts with user, dont do anything
+      // The following page does not need to be redirected.
       if (router.asPath.startsWith(PageConst.Users)) return
+      if (router.asPath.startsWith(PageConst.Setting)) return
 
       // If user is not signed in at this point, it should be an error.
       if (!isSignedIn) throw new Error(`Not Signed In`)
