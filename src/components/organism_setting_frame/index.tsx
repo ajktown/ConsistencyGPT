@@ -13,17 +13,18 @@ const SettingFrame: FC = () => {
   const actionGroupIds = useRecoilValue(actionGroupIdsState)
   const onPatchRitual = usePatchRitual()
 
-  const onClickUp = useCallback(
-    async (id: string) => {
+  const onClickArrow = useCallback(
+    async (id: string, isUpward = true) => {
       try {
         const index = actionGroupIds.findIndex(
           (actionGroupId) => actionGroupId === id,
         )
         const newActionGroupIds = [...actionGroupIds]
         const tmp = newActionGroupIds[index]
-        newActionGroupIds[index] = newActionGroupIds[index - 1]
-        newActionGroupIds[index - 1] = tmp
-        console.log({ newActionGroupIds })
+
+        const newIndex = isUpward ? -1 : 1
+        newActionGroupIds[index] = newActionGroupIds[index + newIndex]
+        newActionGroupIds[index + newIndex] = tmp
         await onPatchRitual({ actionGroupIds: newActionGroupIds })
       } catch {}
     },
@@ -33,7 +34,7 @@ const SettingFrame: FC = () => {
   return (
     <Stack alignItems={`center`} spacing={2} p={2}>
       <List sx={{ width: '100%', maxWidth: 700, bgcolor: 'background.paper' }}>
-        {actionGroupIds.map((id) => (
+        {actionGroupIds.map((id, i) => (
           <ListItem
             key={id}
             disableGutters
@@ -42,10 +43,13 @@ const SettingFrame: FC = () => {
                 <SettingFrameRefresher groupId={id} />
                 <StyledIconButtonAtom
                   jsxElementButton={<ArrowUpwardIcon />}
-                  onClick={() => onClickUp(id)}
+                  onClick={() => onClickArrow(id)}
+                  isDisabled={i === 0}
                 />
                 <StyledIconButtonAtom
                   jsxElementButton={<ArrowDownwardIcon />}
+                  onClick={() => onClickArrow(id, false)}
+                  isDisabled={i === actionGroupIds.length - 1}
                 />
               </Stack>
             }
