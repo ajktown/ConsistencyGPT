@@ -1,8 +1,11 @@
 import { FC, useCallback } from 'react'
-import { Card, Stack } from '@mui/material'
+import { ListItem, ListItemText, Stack } from '@mui/material'
 import StyledCloudRefresher from '@/atoms/StyledCloudRefresher'
 import { useActionGroupById } from '@/hooks/action-group/use-action-group-by-id.hook'
 import ActionGroupCardTitle from './index.title'
+import StyledIconButtonAtom from '@/atoms/StyledIconButton'
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 
 interface Props {
   id: string
@@ -16,15 +19,18 @@ const ActionGroupCardModifyingOrder: FC<Props> = ({ id }) => {
   }, [onGetActionGroupById])
 
   return (
-    <Card>
-      <Stack m={3}>
-        {/* Header */}
-        <Stack alignItems="center" direction={`row`} spacing={0.5} m={2}>
-          <ActionGroupCardTitle id={id} />
+    <ListItem
+      disableGutters
+      secondaryAction={
+        <Stack alignItems={'center'} direction="row">
           <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
+          <StyledIconButtonAtom jsxElementButton={<ArrowUpwardIcon />} />
+          <StyledIconButtonAtom jsxElementButton={<ArrowDownwardIcon />} />
         </Stack>
-      </Stack>
-    </Card>
+      }
+    >
+      <ListItemText primary={<ActionGroupCardTitle id={id} />} />
+    </ListItem>
   )
 }
 

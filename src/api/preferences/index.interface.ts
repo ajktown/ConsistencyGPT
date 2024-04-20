@@ -8,4 +8,5 @@ export interface IPreference extends DataBasics {
 
 export interface PreferenceModifiable {
   nativeLanguages: GlobalLanguageCode[]
+  selectedDictIds: string[]
 }
