@@ -11,8 +11,7 @@ export const usePatchRitual = () => {
       async (dto: Partial<PatchRitualGroupBodyDTO>) => {
         try {
           const [data] = await patchRitualApi(dto)
-          console.log(data)
-          set(actionGroupIdsState, data.ritual.actionGroupIds)
+          set(actionGroupIdsState, data.ritual.orderedActionGroupIds)
         } catch {}
       },
     [],

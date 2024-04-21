@@ -18,7 +18,7 @@ export const useRituals = () => {
 
           if (!res || res.rituals.length === 0) return
 
-          set(actionGroupIdsState, res.rituals[0].actionGroupIds)
+          set(actionGroupIdsState, res.rituals[0].orderedActionGroupIds)
         } catch {
           set(actionGroupIdsState, [])
         }
