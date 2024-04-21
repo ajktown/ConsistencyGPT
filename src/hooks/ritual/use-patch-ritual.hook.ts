@@ -12,7 +12,7 @@ export const usePatchRitual = () => {
         try {
           const [data] = await patchRitualApi(dto)
           console.log(data)
-          set(actionGroupIdsState, data.ritual.orderedActionGroupIds)
+          set(actionGroupIdsState, data.ritual.actionGroupIds)
         } catch {}
       },
     [],
