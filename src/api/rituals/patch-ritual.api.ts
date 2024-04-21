@@ -1,13 +1,13 @@
 import axios from 'axios'
 import { CustomizedAxiosResponse } from '../index.interface'
-import { IRitual } from './get-rituals.api'
+import { IParentRitual } from './get-rituals.api'
 
 export interface PatchRitualGroupBodyDTO {
   actionGroupIds: string[]
 }
 
 export interface GetRitualByIdRes {
-  ritual: IRitual
+  ritual: IParentRitual
 }
 
 export const patchRitualApi = async (

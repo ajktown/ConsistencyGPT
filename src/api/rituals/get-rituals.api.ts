@@ -1,15 +1,19 @@
 import axios from 'axios'
 import { CustomizedAxiosResponse } from '../index.interface'
 
-export interface IRitual {
+interface IRitual {
   id: string
   ownerId: string
   name: string
-  orderedActionGroupIds: string[]
+  // orderedActionGroupIds: string[] // don't need it so its commented out
+}
+
+export interface IParentRitual extends IRitual {
+  actionGroupIds: string[]
 }
 
 export interface GetRitualsRes {
-  rituals: IRitual[]
+  rituals: IParentRitual[]
 }
 
 /**
