@@ -1,5 +1,6 @@
 import { PropsMenuItem } from '@/atoms/StyledIconButtonWithMenu'
 import StyledUserAvatar from '@/atoms/StyledUserAvatar'
+import { PageConst } from '@/constants/pages.constant'
 import { useOnSignOutApp } from '@/hooks/app/use-on-sign-out-app.hook'
 import { authPrepState } from '@/recoil/app/app.state'
 import { useRouter } from 'next/router'
@@ -15,6 +16,9 @@ const EndUserAvatar: FC = () => {
   const onSignOutApp = useOnSignOutApp()
   const onClickToAdminProfile = useCallback(() => {
     router.push(`/users/mlajkim`)
+  }, [router])
+  const onClickToSetting = useCallback(() => {
+    router.push(PageConst.Setting)
   }, [router])
   const onClickBuyMeCoffee = useCallback(() => {
     const url = `https://www.buymeacoffee.com/mlajkim`
@@ -32,6 +36,11 @@ const EndUserAvatar: FC = () => {
         id: `to_mlajkim_profile`,
         title: `To mlajkim's profile`,
         onClick: onClickToAdminProfile,
+      },
+      {
+        id: `setting`,
+        title: `Setting`,
+        onClick: onClickToSetting,
       },
       {
         id: `sign_out`,
