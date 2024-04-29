@@ -17,6 +17,7 @@ const PRIVATE_DEFAULT_ICON_SIZE: PrivateIconSize = `sm`
 
 interface Props {
   menuItems?: PropsMenuItem[]
+  sizePixels?: number // sizePixels overrides size
   size?: PrivateIconSize
   imageUrl?: string
   imageName?: string
@@ -24,7 +25,10 @@ interface Props {
 
 const privateGetWidth = (
   size: PrivateIconSize = PRIVATE_DEFAULT_ICON_SIZE,
+  sizePixels: number | undefined,
 ): { width: number; height: number } => {
+  if (sizePixels) return { width: sizePixels, height: sizePixels }
+
   switch (size) {
     case `xs`:
       return { width: 24, height: 24 }
@@ -40,8 +44,19 @@ const privateGetWidth = (
   }
 }
 
-const StyledUserAvatarBody: FC<Props> = ({ imageName, imageUrl, size }) => {
-  return <Avatar alt={imageName} src={imageUrl} sx={privateGetWidth(size)} />
+const StyledUserAvatarBody: FC<Props> = ({
+  imageName,
+  imageUrl,
+  size,
+  sizePixels,
+}) => {
+  return (
+    <Avatar
+      alt={imageName}
+      src={imageUrl}
+      sx={privateGetWidth(size, sizePixels)}
+    />
+  )
 }
 
 /**
