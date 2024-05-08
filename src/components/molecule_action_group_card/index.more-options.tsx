@@ -19,21 +19,20 @@ const ActionGroupCardMoreOptions: FC<Props> = ({ id, nickname }) => {
     useDeleteTodayActionsByActionGroupId(id)
 
   const isOnClickCommitLateDisabled: boolean = useMemo(() => {
-    // TODO: Must use the API given derived state of the action instead (once api does it)
     if (!actionGroup) return true // disabled
     if (actionGroup.props.id === ActionGroupFixedId.DailyPostWordChallenge)
       return true // disabled
+
     // if already handled:
-    if (actionGroup.isTodaySuccessful) return true // disabled
-    return !actionGroup.isPassed // disabled if it is not passed
+    return !actionGroup.derivedState.isLateCommittable
   }, [actionGroup])
 
   const isDeleteTodayActionsDisabled: boolean = useMemo(() => {
-    // TODO: Must use the API given derived state of the action instead (once api does it)
     if (!actionGroup) return true // disabled
     if (actionGroup.props.id === ActionGroupFixedId.DailyPostWordChallenge)
       return true // disabled
-    return !actionGroup.isTodaySuccessful // disabled if it is not successful
+
+    return !actionGroup.derivedState.isDeletable
   }, [actionGroup])
 
   // contains every loading state of a function:

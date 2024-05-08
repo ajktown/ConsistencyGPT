@@ -36,13 +36,28 @@ type IsTodaySuccessful =
   | false // isPassed && !isTodayHandled
   | null // isPassed
 
+type ActionGroupStateTime = `Early` | `OnTime` | `Late`
+type ActionGroupStateCommitment =
+  | `Committed`
+  | `DummyCommitted`
+  | `NotCommitted`
+type ActionGroupState = `${ActionGroupStateTime}${ActionGroupStateCommitment}`
+
+interface ActionGroupDerivedState {
+  isOnTimeCommittable: boolean
+  isDummyCommittable: boolean
+  isLateCommittable: boolean
+  isDeletable: boolean
+}
+
 export interface GetActionGroupRes {
   props: IActionGroup
   actionsLength: number
   isTodayHandled: boolean
   totalCount: number
   isOpened: boolean // check if current time is opened to post action
-  isPassed: boolean // check if time has already passed
   isTodaySuccessful: IsTodaySuccessful
   actions: IActionDerived[]
+  state: ActionGroupState
+  derivedState: ActionGroupDerivedState
 }
