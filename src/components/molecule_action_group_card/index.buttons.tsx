@@ -14,9 +14,10 @@ const ActionGroupCardButton: FC<Props> = ({ id }) => {
     usePostActionByActionGroupId(id)
 
   if (!actionGroup) return null
-  if (actionGroup.derivedState.isOnTimeCommittable) return null
   if (actionGroup.props.id === ActionGroupFixedId.DailyPostWordChallenge)
     return null
+  if (!actionGroup.derivedState.isOnTimeCommittable) return null
+
 
   return (
     <StyledCircularButtonAtom
