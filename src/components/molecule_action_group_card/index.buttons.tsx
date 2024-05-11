@@ -18,7 +18,6 @@ const ActionGroupCardButton: FC<Props> = ({ id }) => {
     return null
   if (!actionGroup.derivedState.isOnTimeCommittable) return null
 
-
   return (
     <StyledCircularButtonAtom
       onClick={onPostActionByActionGroupId}
