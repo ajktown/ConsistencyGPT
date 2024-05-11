@@ -37,8 +37,8 @@ const ActivityCalendarById: FC<Props> = ({ id }) => {
   if (actionGroup === null) return <ActivityCalendarUnknown />
   if (actionGroup === undefined) return null
   if (
-    !actionGroup.derivedState.isOnTimeCommittable &&
-    actionGroup.props.id !== ActionGroupFixedId.DailyPostWordChallenge
+    actionGroup.props.id !== ActionGroupFixedId.DailyPostWordChallenge &&
+    actionGroup.derivedState.isOnTimeCommittable
   )
     return null
 

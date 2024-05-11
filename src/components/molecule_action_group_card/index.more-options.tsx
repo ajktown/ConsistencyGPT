@@ -6,6 +6,7 @@ import { useRecoilValue } from 'recoil'
 import { ActionGroupFixedId } from '@/constants/action-group.constant'
 import { usePostActionByActionGroupId } from '@/hooks/action-group/use-post-action-by-action-group-id.hook'
 import { useDeleteTodayActionsByActionGroupId } from '@/hooks/action-group/use-delete-today-actions-by-action-group-id.hook'
+import { usePostDummyActionByActionGroupId } from '@/hooks/action-group/use-post-dummy-action-by-action-group-id.hook'
 
 interface Props {
   id: string // action group id
@@ -17,6 +18,8 @@ const ActionGroupCardMoreOptions: FC<Props> = ({ id, nickname }) => {
     usePostActionByActionGroupId(id)
   const [loadingDelete, onDeleteTodayActionsByActionGroupId] =
     useDeleteTodayActionsByActionGroupId(id)
+  const [loadingDummyPost, onPostDummyActionByActionGroupId] =
+    usePostDummyActionByActionGroupId(id)
 
   const isOnClickCommitLateDisabled: boolean = useMemo(() => {
     if (!actionGroup) return true // disabled
@@ -25,6 +28,15 @@ const ActionGroupCardMoreOptions: FC<Props> = ({ id, nickname }) => {
 
     // if already handled:
     return !actionGroup.derivedState.isLateCommittable
+  }, [actionGroup])
+
+  const isDummyCommittableDisabled: boolean = useMemo(() => {
+    if (!actionGroup) return true // disabled
+    if (actionGroup.props.id === ActionGroupFixedId.DailyPostWordChallenge)
+      return true // disabled
+
+    // if already handled:
+    return !actionGroup.derivedState.isDummyCommittable
   }, [actionGroup])
 
   const isDeleteTodayActionsDisabled: boolean = useMemo(() => {
@@ -36,13 +48,19 @@ const ActionGroupCardMoreOptions: FC<Props> = ({ id, nickname }) => {
   }, [actionGroup])
 
   // contains every loading state of a function:
-  const everyLoading = loadingLatePost || loadingDelete
+  const everyLoading = loadingLatePost || loadingDelete || loadingDummyPost
 
   if (nickname) return null // if it is shared mode (or has nickname), do not show the button
 
   return (
     <StyledIconButtonWithMenuAtom
       menus={[
+        {
+          id: `today_not_committable`,
+          title: `Today Not Committable`,
+          isDisabled: isDummyCommittableDisabled || everyLoading,
+          onClick: onPostDummyActionByActionGroupId,
+        },
         {
           id: `commit_late`,
           title: `Commit Late`,
