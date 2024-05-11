@@ -22,7 +22,7 @@ const ActionGroupCardModifyingOrder: FC<Props> = ({ id }) => {
     <ListItem
       disableGutters
       secondaryAction={
-        <Stack alignItems={'center'} direction="row">
+        <Stack alignItems={`center`} direction="row">
           <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
           <StyledIconButtonAtom jsxElementButton={<ArrowUpwardIcon />} />
           <StyledIconButtonAtom jsxElementButton={<ArrowDownwardIcon />} />

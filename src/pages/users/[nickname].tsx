@@ -41,10 +41,10 @@ const UserByNicknamePage: FC = () => {
     <Appbar nickname={nickname.trim()}>
       <ErrorApiConnectionFail />
       <Grid container>
-        <Grid xs={2} style={{ display: 'flex', justifyContent: 'center' }}>
+        <Grid xs={2} style={{ display: `flex`, justifyContent: `center` }}>
           <Stack p={1}>
             <StyledUserAvatar
-              imageUrl={user?.imageUrl ?? ''}
+              imageUrl={user?.imageUrl ?? ``}
               sizePixels={150}
             />
             <Typography variant="body1" fontWeight={600}>

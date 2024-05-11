@@ -50,14 +50,14 @@ const SettingFrame: FC = () => {
         title={`Back to main page`}
         onClick={onClickToHomePage}
       />
-      <List sx={{ width: '100%', maxWidth: 700, bgcolor: 'background.paper' }}>
+      <List sx={{ width: `100%`, maxWidth: 700, bgcolor: `background.paper` }}>
         {actionGroupIds.map((id, i) => (
           <ListItem
             key={id}
             disableGutters
-            sx={{ bgcolor: highlightedId === id ? 'lightyellow' : 'inherit' }}
+            sx={{ bgcolor: highlightedId === id ? `lightyellow` : `inherit` }}
             secondaryAction={
-              <Stack alignItems={'center'} direction="row">
+              <Stack alignItems={`center`} direction="row">
                 <SettingFrameRefresher groupId={id} />
                 <StyledIconButtonAtom
                   jsxElementButton={<ArrowUpwardIcon />}
