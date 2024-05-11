@@ -48,7 +48,7 @@ const EndUserAvatar: FC = () => {
         onClick: onSignOutApp,
       },
     ],
-    [onSignOutApp, onClickToAdminProfile, onClickBuyMeCoffee],
+    [onClickToAdminProfile, onClickBuyMeCoffee, onClickToSetting, onSignOutApp],
   )
 
   return (
