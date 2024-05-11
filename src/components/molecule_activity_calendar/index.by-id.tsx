@@ -34,12 +34,10 @@ const ActivityCalendarById: FC<Props> = ({ id }) => {
     return [sliceFrom, 365 - sliceFrom]
   }, [width])
 
-  // TODO: Must use the API given derived state of the action instead (once api does it)
   if (actionGroup === null) return <ActivityCalendarUnknown />
   if (actionGroup === undefined) return null
   if (
-    actionGroup.isOpened &&
-    !actionGroup.isTodayHandled &&
+    !actionGroup.derivedState.isOnTimeCommittable &&
     actionGroup.props.id !== ActionGroupFixedId.DailyPostWordChallenge
   )
     return null
