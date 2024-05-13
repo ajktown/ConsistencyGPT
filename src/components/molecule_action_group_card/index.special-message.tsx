@@ -18,9 +18,13 @@ const ActionGroupCardSpecialMessage: FC<Props> = ({ id }) => {
   const onOpenNewTab = useOpenNewTab(url)
 
   if (!actionGroup) return null
-  if (actionGroup.isTodaySuccessful === null) return null
 
-  if (actionGroup.isTodayHandled)
+  // TODO: API must return isTodayAccomplished
+  if (
+    [`EarlyCommitted`, `OnTimeCommitted`, `LateCommitted`].includes(
+      actionGroup.state,
+    )
+  )
     return (
       <StyledTextWithHeaderIcon
         headerIcon={<CheckCircleOutlineIcon color="success" />}
@@ -30,26 +34,39 @@ const ActionGroupCardSpecialMessage: FC<Props> = ({ id }) => {
         title={`You've accomplished the task for today. Keep up the good work!`}
       />
     )
-
-  return (
-    <Stack mt={1}>
-      <StyledTextWithHeaderIcon
-        headerIcon={<WarningIcon color="warning" />}
-        textProps={{
-          fontFamily: `Cormorant Garamond`,
-        }}
-        title={`It seems like you've missed the task for today. Remember, consistency is the key in your success.`}
-      />
-      {actionGroup.props.id === ActionGroupFixedId.DailyPostWordChallenge && (
-        <Fragment>
-          <Typography fontFamily={`Cormorant Garamond`}>
-            {`Please go visit ${url} and add a word for today.`}
-          </Typography>
-          <StyledTextButtonAtom title={`Visit ${url}`} onClick={onOpenNewTab} />
-        </Fragment>
-      )}
-    </Stack>
+  // TODO: API must return isTodayMissed
+  if (
+    [
+      `EarlyDummyCommitted`,
+      `OnTimeDummyCommitted`,
+      `LateDummyCommitted`,
+      `LateNotCommitted`,
+    ].includes(actionGroup.state)
   )
+    return (
+      <Stack mt={1}>
+        <StyledTextWithHeaderIcon
+          headerIcon={<WarningIcon color="warning" />}
+          textProps={{
+            fontFamily: `Cormorant Garamond`,
+          }}
+          title={`It seems like you've missed the task for today. Remember, consistency is the key in your success.`}
+        />
+        {actionGroup.props.id === ActionGroupFixedId.DailyPostWordChallenge && (
+          <Fragment>
+            <Typography fontFamily={`Cormorant Garamond`}>
+              {`Please go visit ${url} and add a word for today.`}
+            </Typography>
+            <StyledTextButtonAtom
+              title={`Visit ${url}`}
+              onClick={onOpenNewTab}
+            />
+          </Fragment>
+        )}
+      </Stack>
+    )
+
+  return null
 }
 
 export default ActionGroupCardSpecialMessage
