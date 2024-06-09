@@ -14,7 +14,8 @@ export const useRituals = () => {
           let res: GetRitualsRes | null = null
 
           if (nickname) res = (await getUserRitualsApi({ nickname }))[0]
-          else res = (await getRitualById())[0]
+          // only archived action groups are requested by default atm:
+          else res = (await getRitualById({ isArchived: false }))[0]
 
           if (!res || res.rituals.length === 0) return
 
