@@ -12,10 +12,17 @@ import { useRituals } from '@/hooks/ritual/use-rituals.hook'
 
 const ArchiveActionGroupDialog: FC = () => {
   const actionGroupId = useRecoilValue(archivingActionGroupIdState)
-  const onClose = useResetRecoilState(archivingActionGroupIdState)
+  const resetArchivingActionGroupId = useResetRecoilState(
+    archivingActionGroupIdState,
+  )
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState(``)
   const onGetRituals = useRituals()
+
+  const onClose = useCallback(() => {
+    setMessage(``) // reset input message
+    resetArchivingActionGroupId()
+  }, [resetArchivingActionGroupId])
 
   const onPost = useCallback(async () => {
     try {
