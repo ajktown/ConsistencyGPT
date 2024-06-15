@@ -16,13 +16,17 @@ export interface GetRitualsRes {
   rituals: IParentRitual[]
 }
 
+interface GetRitualQueryDTO {
+  isArchived: undefined | boolean
+}
+
 /**
  * The ritual group is not yet developed; cannot be modified yet
  */
-export const getRitualsApi = async (): Promise<
-  CustomizedAxiosResponse<GetRitualsRes>
-> => {
+export const getRitualsApi = async (
+  dto: GetRitualQueryDTO,
+): Promise<CustomizedAxiosResponse<GetRitualsRes>> => {
   const url = `/v1/rituals`
-  const res = await axios.get(url)
+  const res = await axios.get(url, { params: dto })
   return [res.data, res]
 }

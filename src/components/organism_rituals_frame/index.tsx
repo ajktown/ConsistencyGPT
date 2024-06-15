@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil'
 import ActionGroupCard from '@/components/molecule_action_group_card'
 import { Stack } from '@mui/material'
 import { ActionGroupFixedId } from '@/constants/action-group.constant'
-
+import ArchiveActionGroupDialog from '../dialog_archive_action_group'
 interface Props {
   nickname?: string
 }
@@ -19,6 +19,7 @@ const RitualsFrame: FC<Props> = ({ nickname }) => {
       {actionGroupIds.map((id) => (
         <ActionGroupCard key={id} id={id} nickname={nickname} />
       ))}
+      <ArchiveActionGroupDialog />
     </Stack>
   )
 }
