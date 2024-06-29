@@ -14,7 +14,7 @@ Master Your Daily Tasks with GitHub Commit Calendar-Style Tracking
   - [Overview](#overview)
   - [For Developers](#for-developers)
   - [Public Image](#public-image)
-    - [Push image command](#push-image-command)
+    - [Push image command locally](#push-image-command-locally)
   - [About the starter of this project](#about-the-starter-of-this-project)
     - [Getting Started](#getting-started)
     - [Learn More](#learn-more)
@@ -34,8 +34,8 @@ ConsistencyGPT revolutionizes daily task management by integrating the familiar 
 https://hub.docker.com/r/ajktown/consistency/tags
 
 
-### Push image command
-You must have permission to push to the repository.
+### Push image command locally
+By default, the GitHub Action will build and push the image to the Docker Hub. If you want to push the image locally, you can use the following commands:
 ```sh
 
 docker build -t ajktown/consistency:latest .
