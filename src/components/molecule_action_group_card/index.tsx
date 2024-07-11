@@ -7,6 +7,7 @@ import ActionGroupCardButton from './index.buttons'
 import ActionGroupCardTitle from './index.title'
 import ActionGroupCardSpecialMessage from './index.special-message'
 import ActionGroupCardMoreOptions from './index.more-options'
+import { axiosResponseErrorLambda } from '@/lambdas/axios-response-error.lambda'
 
 interface Props {
   id: string
@@ -18,7 +19,8 @@ const ActionGroupCard: FC<Props> = ({ id, nickname }) => {
   const onClickRefresh = useCallback(async () => {
     // run all together
     await Promise.all([onGetActionGroupById(nickname)])
-  }, [nickname, onGetActionGroupById])
+    }, [nickname, onGetActionGroupById])
+
 
   return (
     <Card>
