@@ -10,7 +10,10 @@ export const usePatchRitual = () => {
     ({ set }) =>
       async (dto: Partial<PatchRitualGroupBodyDTO>) => {
         try {
-          const [data] = await patchRitualApi(dto)
+          const [data] = await patchRitualApi({
+            ...dto,
+            isArchived: true, // fixed
+          })
           set(actionGroupIdsState, data.ritual.actionGroupIds)
         } catch {}
       },

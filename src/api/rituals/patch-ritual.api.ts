@@ -4,6 +4,7 @@ import { IParentRitual } from './get-rituals.api'
 
 export interface PatchRitualGroupBodyDTO {
   actionGroupIds: string[]
+  isArchived: boolean
 }
 
 export interface GetRitualByIdRes {
