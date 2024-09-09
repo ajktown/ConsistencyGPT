@@ -5,8 +5,7 @@ import RitualsFrame from '@/components/organism_rituals_frame'
 import Appbar from '@/components/organism_appbar'
 import StyledCentered from '@/organisms/StyledCentered'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
-import { Stack, Typography } from '@mui/material'
-import Grid from '@mui/material/Unstable_Grid2'
+import { Grid2, Stack, Typography } from '@mui/material'
 import { useUserByNickname } from '@/hooks/user/get-user-by-nickname.hook'
 import StyledUserAvatar from '@/atoms/StyledUserAvatar'
 
@@ -40,8 +39,11 @@ const UserByNicknamePage: FC = () => {
   return (
     <Appbar nickname={nickname.trim()}>
       <ErrorApiConnectionFail />
-      <Grid container>
-        <Grid xs={2} style={{ display: `flex`, justifyContent: `center` }}>
+      <Grid2 container>
+        <Grid2
+          style={{ display: `flex`, justifyContent: `center` }}
+          sx={{ xs: 2 }}
+        >
           <Stack p={1}>
             <StyledUserAvatar
               imageUrl={user?.imageUrl ?? ``}
@@ -57,11 +59,11 @@ const UserByNicknamePage: FC = () => {
               {user?.bio}
             </Typography>
           </Stack>
-        </Grid>
-        <Grid xs={10}>
+        </Grid2>
+        <Grid2 sx={{ xs: 10 }}>
           <RitualsFrame nickname={nickname} />
-        </Grid>
-      </Grid>
+        </Grid2>
+      </Grid2>
       <RitualsFrame nickname={nickname} />
     </Appbar>
   )
