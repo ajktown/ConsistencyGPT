@@ -64,7 +64,6 @@ const UserByNicknamePage: FC = () => {
           <RitualsFrame nickname={nickname} />
         </Grid2>
       </Grid2>
-      <RitualsFrame nickname={nickname} />
     </Appbar>
   )
 }
