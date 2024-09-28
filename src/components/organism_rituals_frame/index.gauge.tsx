@@ -33,12 +33,12 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
  * @returns
  */
 const RitualsFrameGauge: FC<Props> = () => {
-  const value = useRecoilValue(actionGroupAchievedPercentSelector)
+  const percentage = useRecoilValue(actionGroupAchievedPercentSelector)
 
   return (
     <Box minWidth={200} alignItems={`center`}>
-      <BorderLinearProgress variant="determinate" value={value} />
-      <Typography>{`${value}%`}</Typography>
+      <BorderLinearProgress variant="determinate" value={percentage} />
+      <Typography>{`${percentage}%`}</Typography>
     </Box>
   )
 }
