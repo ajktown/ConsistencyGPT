@@ -10,6 +10,7 @@ import PostActionGroupDialog from '@/components/dialog_post_action_group'
 import RitualsFrameRefreshButton from '@/components/organism_rituals_frame/index.refresh-button'
 import AppbarGitHubButtonPart from '../atom_appbar_parts/index.github_icon'
 import useWindowSize from 'react-use/lib/useWindowSize'
+import RitualsFrameGauge from '../organism_rituals_frame/index.gauge'
 
 const PRIVATE_TITLE = `Consistency GPT (Beta)`
 const PRIVATE_SHORTER_TITLE = `CGT`
@@ -59,6 +60,7 @@ const Appbar: FC<Props> = ({ children, nickname }) => {
           )}
           <Box pr={2} />
           <Box flexGrow={1} />
+          <RitualsFrameGauge />
           <RitualsFrameRefreshButton nickname={nickname} />
           <Box pr={1} />
           <AppbarGitHubButtonPart />
