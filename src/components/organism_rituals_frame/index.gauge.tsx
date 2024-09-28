@@ -5,7 +5,7 @@ import LinearProgress, {
 } from '@mui/material/LinearProgress'
 import { Box, Typography } from '@mui/material'
 import { useRecoilValue } from 'recoil'
-import { actionGroupAchievedPercent } from '@/recoil/action-groups/action-groups.state'
+import { actionGroupAchievedPercentSelector } from '@/recoil/action-groups/action-groups.selectors'
 
 interface Props {}
 // TODO: Move me somewhere else?
@@ -33,7 +33,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
  * @returns
  */
 const RitualsFrameGauge: FC<Props> = () => {
-  const value = useRecoilValue(actionGroupAchievedPercent)
+  const value = useRecoilValue(actionGroupAchievedPercentSelector)
 
   return (
     <Box minWidth={200} alignItems={`center`}>
