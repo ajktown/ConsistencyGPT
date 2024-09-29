@@ -10,10 +10,12 @@ import PostActionGroupDialog from '@/components/dialog_post_action_group'
 import RitualsFrameRefreshButton from '@/components/organism_rituals_frame/index.refresh-button'
 import AppbarGitHubButtonPart from '../atom_appbar_parts/index.github_icon'
 import useWindowSize from 'react-use/lib/useWindowSize'
+import RitualsFrameGauge from '../organism_rituals_frame/index.gauge'
 
 const PRIVATE_TITLE = `Consistency GPT (Beta)`
 const PRIVATE_SHORTER_TITLE = `CGT`
-const PRIVATE_TITLE_SHRINK_PIXELS = 500
+const PRIVATE_TITLE_VISIBLE_PIXELS = 500
+const PRIVATE_GAUGE_VISIBLE_PIXELS = 850
 const PRIVATE_TITLE_LOGO = `/favicon_archived/android-chrome-512x512.png`
 interface Props {
   nickname?: string
@@ -35,7 +37,7 @@ const Appbar: FC<Props> = ({ children, nickname }) => {
             height={30}
             style={{ marginRight: 8 }}
           />
-          {width <= PRIVATE_TITLE_SHRINK_PIXELS && (
+          {width <= PRIVATE_TITLE_VISIBLE_PIXELS && (
             <Typography
               variant="h6"
               color="inherit"
@@ -46,7 +48,7 @@ const Appbar: FC<Props> = ({ children, nickname }) => {
               {nickname && ` - ${nickname}`}
             </Typography>
           )}
-          {PRIVATE_TITLE_SHRINK_PIXELS < width && (
+          {PRIVATE_TITLE_VISIBLE_PIXELS <= width && (
             <Typography
               variant="h6"
               color="inherit"
@@ -59,6 +61,7 @@ const Appbar: FC<Props> = ({ children, nickname }) => {
           )}
           <Box pr={2} />
           <Box flexGrow={1} />
+          {PRIVATE_GAUGE_VISIBLE_PIXELS <= width && <RitualsFrameGauge />}
           <RitualsFrameRefreshButton nickname={nickname} />
           <Box pr={1} />
           <AppbarGitHubButtonPart />
