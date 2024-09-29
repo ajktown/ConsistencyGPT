@@ -11,6 +11,7 @@ import RitualsFrameRefreshButton from '@/components/organism_rituals_frame/index
 import AppbarGitHubButtonPart from '../atom_appbar_parts/index.github_icon'
 import useWindowSize from 'react-use/lib/useWindowSize'
 import RitualsFrameGauge from '../organism_rituals_frame/index.gauge'
+import RitualsFrameGaugeDialog from '../organism_rituals_frame/index.gague-dialog'
 
 const PRIVATE_TITLE = `Consistency GPT (Beta)`
 const PRIVATE_SHORTER_TITLE = `CGT`
@@ -75,6 +76,7 @@ const Appbar: FC<Props> = ({ children, nickname }) => {
         </Toolbar>
       </AppBar>
       <Box height="calc(100vh - 48px)">{children}</Box>
+      <RitualsFrameGaugeDialog />
     </Box>
   )
 }
