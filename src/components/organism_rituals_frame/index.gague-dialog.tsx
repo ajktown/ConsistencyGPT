@@ -19,7 +19,7 @@ const RitualsFrameGaugeDialog: FC = () => {
     // if percentage changes, open it for two seconds, and close it
     setTimeout(() => setOpen(true), 400)
     setTimeout(() => setVisual(percentage), 850)
-    setTimeout(() => setOpen(false), 1850)
+    setTimeout(() => setOpen(false), 2500)
   }, [percentage])
 
   if (!open) return null

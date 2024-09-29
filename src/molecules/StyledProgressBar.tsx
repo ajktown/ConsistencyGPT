@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { styled } from '@mui/material/styles'
 import LinearProgress, {
   linearProgressClasses,
@@ -34,15 +34,36 @@ const BorderLinearProgress = styled(LinearProgress)<{ value: number }>(
 )
 
 /**
- * StyledProgressBarMolecule renders
- * @param param0
- * @returns
+ * StyledProgressBarMolecule renders a progress bar with a percentage
  */
 const StyledProgressBarMolecule: FC<Props> = ({ percent }) => {
+  const [animatedPercent, setAnimatedPercent] = useState(percent)
+
+  useEffect(() => {
+    const start = animatedPercent
+    const duration = 600 // Animation duration in milliseconds
+    const startTime = performance.now()
+
+    const animate = (currentTime: number) => {
+      const elapsedTime = currentTime - startTime
+      const progress = Math.min(elapsedTime / duration, 1) // Clamp to 1
+
+      // Linear interpolation between start and target percent
+      const newPercent = Math.round(start + (percent - start) * progress)
+      setAnimatedPercent(newPercent)
+
+      if (progress < 1) {
+        requestAnimationFrame(animate) // Continue animation if not done
+      }
+    }
+
+    requestAnimationFrame(animate)
+  }, [percent, animatedPercent])
+
   return (
     <Box minWidth={200} alignItems={`center`}>
       <BorderLinearProgress variant="determinate" value={percent} />
-      <Typography>{`${percent}%`}</Typography>
+      <Typography>{`${animatedPercent}%`}</Typography>
     </Box>
   )
 }
