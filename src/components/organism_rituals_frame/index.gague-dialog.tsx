@@ -16,11 +16,13 @@ const RitualsFrameGaugeDialog: FC = () => {
   const percentage = useRecoilValue(actionGroupAchievedPercentSelector)
 
   useEffect(() => {
+    if (visual === percentage) return // if it is the same, we should not show anything!
+
     // if percentage changes, open it for two seconds, and close it
     setTimeout(() => setOpen(true), 400)
     setTimeout(() => setVisual(percentage), 850)
     setTimeout(() => setOpen(false), 2500)
-  }, [percentage])
+  }, [visual, percentage])
 
   if (!open) return null
 
