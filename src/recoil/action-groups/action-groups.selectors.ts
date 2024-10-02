@@ -20,7 +20,7 @@ export const actionGroupAchievedPercentSelector = selector<number>({
     const ids = get(actionGroupIdsState)
     for (const id of ids) {
       const actionGroup = get(actionGroupFamily(id))
-      if (!actionGroup) continue // empty action groups are not counted
+      if (!actionGroup) return 0 // this means it is not yet ready
 
       totalCounts++
       if (actionGroup.isTodayHandled) achievedCount++
