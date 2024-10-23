@@ -1,5 +1,5 @@
 import { FC, Fragment, useCallback } from 'react'
-import { Card, Stack } from '@mui/material'
+import { Box, Card, Stack } from '@mui/material'
 import StyledCloudRefresher from '@/atoms/StyledCloudRefresher'
 import { useActionGroupById } from '@/hooks/action-group/use-action-group-by-id.hook'
 import ActivityCalendarById from '../molecule_activity_calendar/index.by-id'
@@ -7,6 +7,7 @@ import ActionGroupCardButton from './index.buttons'
 import ActionGroupCardTitle from './index.title'
 import ActionGroupCardSpecialMessage from './index.special-message'
 import ActionGroupCardMoreOptions from './index.more-options'
+import ActionGroupCardYears from './index.years'
 
 interface Props {
   id: string
@@ -21,7 +22,7 @@ const ActionGroupCard: FC<Props> = ({ id, nickname }) => {
   }, [nickname, onGetActionGroupById])
 
   return (
-    <Card>
+    <Card sx={{ display: `flex`, flexDirection: `row` }}>
       <Stack m={3}>
         {/* Header */}
         <Stack alignItems="center" direction={`row`} spacing={0.5} m={2}>
@@ -39,6 +40,9 @@ const ActionGroupCard: FC<Props> = ({ id, nickname }) => {
           )}
         </Stack>
       </Stack>
+      <Box mt={2} mr={2} mb={2}>
+        <ActionGroupCardYears id={id} />
+      </Box>
     </Card>
   )
 }
