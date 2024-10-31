@@ -5,6 +5,8 @@ import { useRecoilValue } from 'recoil'
 import ActivityCalendarUnknown from './index.unknown'
 import { ActionGroupFixedId } from '@/constants/action-group.constant'
 import useWindowSize from 'react-use/lib/useWindowSize'
+import { appThemeState } from '@/recoil/app-theme/app-theme.state'
+import { getAppThemeColorLambda } from '@/lambdas/get-app-theme-color.lambda'
 
 // TODO: The post consistency will use the same here
 interface Props {
@@ -15,6 +17,7 @@ const SHRINKING_MIN_WIDTH = 920 // starting width that makes the calendar shrink
 const COMMIT_BLOCK_WIDTH = 16 // 12 x 12 with 2 indent between
 
 const ActivityCalendarById: FC<Props> = ({ id }) => {
+  const appTheme = useRecoilValue(appThemeState)
   const { width } = useWindowSize()
   const actionGroup = useRecoilValue(actionGroupFamily(id))
 
@@ -45,10 +48,7 @@ const ActivityCalendarById: FC<Props> = ({ id }) => {
   return (
     <ReactActivityCalendar
       loading={!actionGroup}
-      theme={{
-        light: [`#d4e6cf`, `#a7d4bf`, `#80d1ab`, `#56d197`, `#29cc7f`],
-        dark: [`#d4e6cf`, `#a7d4bf`, `#80d1ab`, `#56d197`, `#29cc7f`],
-      }}
+      theme={getAppThemeColorLambda(appTheme)}
       totalCount={totalCount}
       data={actionGroup.actions.slice(sliceFrom, 365).map((p) => {
         return {
