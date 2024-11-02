@@ -11,15 +11,25 @@ export enum AppTheme {
   Halloween = `halloween`,
 }
 
-const halloweenStart = DateTime.fromObject({ month: 10, day: 17 }).startOf(
-  `day`,
-)
-const halloweenEnd = DateTime.fromObject({ month: 11, day: 1 }).endOf(`day`)
-
-const defaultTheme = ((): AppTheme => {
+const isWithinRange = (date: DateTime<true> | DateTime<false>) => {
   const now = DateTime.now()
+  // Theme is applied within the range: 13 days before and 1 day after the given date:
+  // const start = date.minus({ days: 13 })
+  // const end = date.plus({ days: 1 })
+  return now >= date.minus({ days: 13 }) && now <= date.plus({ days: 1 })
+}
 
-  if (now >= halloweenStart && now <= halloweenEnd) return AppTheme.Halloween
+const halloween = DateTime.fromObject({ month: 10, day: 31 }).endOf(`day`)
+const defaultTheme = ((): AppTheme => {
+  // TODO: The following themes will be implemented in the future:
+  // if (isWithinRange(newYears)) return AppTheme.NewYear // Happy New Year theme
+  // if (isWithinRange(valentines)) return AppTheme.Valentines // Love theme
+  // if (isWithinRange(spring)) return AppTheme.Spring // Cherry blossom theme
+  // if (isWithinRange(summer)) return AppTheme.Summer // Beach theme
+  if (isWithinRange(halloween)) return AppTheme.Halloween
+  // if (isWithinRange(christmas)) return AppTheme.Chrstimas // Christmas theme
+
+  // Default:
   return AppTheme.Basic
 })()
 

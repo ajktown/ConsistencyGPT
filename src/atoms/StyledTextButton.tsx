@@ -22,23 +22,20 @@ export interface StyledTextButtonProps {
   sx?: SxProps<Theme>
 }
 
-const StyledTextButton: FC<StyledTextButtonProps> = ({
-  onClick,
-  ...props
-}) => {
+const StyledTextButton: FC<StyledTextButtonProps> = ({ onClick, ...props }) => {
   return (
     <Box>
       <Tooltip
-        title={props.hoverMessage?.title || ``}
-        placement={props.hoverMessage?.placement || `bottom`}
+        title={props.hoverMessage?.title ?? ``}
+        placement={props.hoverMessage?.placement ?? `bottom`}
       >
         <span style={{ cursor: !props.hoverMessage ? undefined : `help` }}>
           <LoadingButton
-            variant={props.variant || `outlined`}
+            variant={props.variant ?? `outlined`}
             size="small"
             disabled={props.isDisabled}
             loading={props.isLoading}
-            color={props.color || `inherit`}
+            color={props.color ?? `inherit`}
             onClick={onClick}
             sx={{
               textTransform: `none`,
