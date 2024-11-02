@@ -22,7 +22,10 @@ export interface StyledTextButtonProps {
   sx?: SxProps<Theme>
 }
 
-const StyledTextButtonAtom: FC<StyledTextButtonProps> = ({ onClick, ...props }) => {
+const StyledTextButtonAtom: FC<StyledTextButtonProps> = ({
+  onClick,
+  ...props
+}) => {
   return (
     <Box>
       <Tooltip
