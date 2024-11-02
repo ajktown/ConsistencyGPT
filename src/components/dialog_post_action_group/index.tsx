@@ -1,4 +1,4 @@
-import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+import ThemedTextButtonAtom from '@/atoms_themed/ThemedTextButton'
 import StyledTextField from '@/atoms/StyledTextField'
 import StyledTextWithHeaderIcon from '@/atoms/StyledTextWithHeaderIcon'
 import { usePostActionGroup } from '@/hooks/action-group/use-post-action-group.hook'
@@ -53,7 +53,7 @@ const PostActionGroupDialog = () => {
 
   if (!isOpen)
     return (
-      <StyledTextButtonAtom
+      <ThemedTextButtonAtom
         title={`Add New Consistency`}
         onClick={() => setOpen(true)}
       />
@@ -100,7 +100,7 @@ const PostActionGroupDialog = () => {
           }}
           title={`Be careful. You cannot edit consistency after adding.`}
         />
-        <StyledTextButtonAtom
+        <ThemedTextButtonAtom
           title="Add"
           onClick={onPost}
           isLoading={loading}

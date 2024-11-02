@@ -1,4 +1,4 @@
-import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+import ThemedTextButtonAtom from '@/atoms_themed/ThemedTextButton'
 import { ActionGroupFixedId } from '@/constants/action-group.constant'
 import { useOpenNewTab } from '@/hooks/use-open-new-tab'
 import { envLambda } from '@/lambdas/get-env.lambda'
@@ -57,7 +57,7 @@ const ActionGroupCardSpecialMessage: FC<Props> = ({ id }) => {
             <Typography fontFamily={`Cormorant Garamond`}>
               {`Please go visit ${url} and add a word for today.`}
             </Typography>
-            <StyledTextButtonAtom
+            <ThemedTextButtonAtom
               title={`Visit ${url}`}
               onClick={onOpenNewTab}
             />

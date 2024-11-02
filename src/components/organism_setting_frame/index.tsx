@@ -8,7 +8,7 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 import ActionGroupCardTitle from '../molecule_action_group_card/index.title'
 import { usePatchRitual } from '@/hooks/ritual/use-patch-ritual.hook'
-import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+import ThemedTextButtonAtom from '@/atoms_themed/ThemedTextButton'
 import { useRouter } from 'next/router'
 import { PageConst } from '@/constants/pages.constant'
 
@@ -46,7 +46,7 @@ const SettingFrame: FC = () => {
 
   return (
     <Stack alignItems={`center`} spacing={2} p={2}>
-      <StyledTextButtonAtom
+      <ThemedTextButtonAtom
         title={`Back to main page`}
         onClick={onClickToHomePage}
       />

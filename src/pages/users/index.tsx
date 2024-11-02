@@ -1,7 +1,7 @@
 import { FC, useCallback } from 'react'
 import StyledCentered from '@/organisms/StyledCentered'
 import { Typography } from '@mui/material'
-import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+import ThemedTextButtonAtom from '@/atoms_themed/ThemedTextButton'
 import { useRouter } from 'next/router'
 const UsersPage: FC = () => {
   const router = useRouter()
@@ -13,7 +13,7 @@ const UsersPage: FC = () => {
   return (
     <StyledCentered>
       <Typography>{`User must be specified`}</Typography>
-      <StyledTextButtonAtom
+      <ThemedTextButtonAtom
         title="To mlajkim's profile"
         onClick={onClickToAdminProfile}
       />

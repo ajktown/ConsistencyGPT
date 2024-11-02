@@ -4,7 +4,7 @@ import ErrorApiConnectionFail from '@/components/molecule_error_api_connection_f
 import RitualsFrame from '@/components/organism_rituals_frame'
 import Appbar from '@/components/organism_appbar'
 import StyledCentered from '@/organisms/StyledCentered'
-import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+import ThemedTextButtonAtom from '@/atoms_themed/ThemedTextButton'
 import { Grid2, Stack, Typography } from '@mui/material'
 import { useUserByNickname } from '@/hooks/user/get-user-by-nickname.hook'
 import StyledUserAvatar from '@/atoms/StyledUserAvatar'
@@ -29,7 +29,7 @@ const UserByNicknamePage: FC = () => {
     return (
       <StyledCentered>
         <Typography>{`Currently user "${nickname}" is not supported`}</Typography>
-        <StyledTextButtonAtom
+        <ThemedTextButtonAtom
           title="To mlajkim's profile"
           onClick={onClickToAdminProfile}
         />

@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Tooltip, Box } from '@mui/material'
+import { Tooltip, Box, SxProps, Theme } from '@mui/material'
 import {
   GlobalMuiColor,
   GlobalMuiPlacement,
@@ -19,6 +19,7 @@ export interface StyledTextButtonProps {
     placement?: GlobalMuiPlacement
   }
   IconRight?: JSX.Element // Try to give a space within the jsx element for better usage
+  sx?: SxProps<Theme>
 }
 
 const StyledTextButtonAtom: FC<StyledTextButtonProps> = ({
@@ -28,18 +29,21 @@ const StyledTextButtonAtom: FC<StyledTextButtonProps> = ({
   return (
     <Box>
       <Tooltip
-        title={props.hoverMessage?.title || ``}
-        placement={props.hoverMessage?.placement || `bottom`}
+        title={props.hoverMessage?.title ?? ``}
+        placement={props.hoverMessage?.placement ?? `bottom`}
       >
         <span style={{ cursor: !props.hoverMessage ? undefined : `help` }}>
           <LoadingButton
-            variant={props.variant || `outlined`}
+            variant={props.variant ?? `outlined`}
             size="small"
             disabled={props.isDisabled}
             loading={props.isLoading}
-            color={props.color || `inherit`}
+            color={props.color ?? `inherit`}
             onClick={onClick}
-            sx={{ textTransform: `none` }}
+            sx={{
+              textTransform: `none`,
+              ...props.sx,
+            }}
           >
             {props.title}
           </LoadingButton>
