@@ -1,4 +1,4 @@
-import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+import ThemedTextButtonAtom from '@/atoms_themed/ThemedTextButton'
 import { actionGroupFamily } from '@/recoil/action-groups/action-groups.state'
 import { Stack } from '@mui/material'
 import { FC } from 'react'
@@ -23,7 +23,7 @@ const ActionGroupCardYears: FC<Props> = ({ id }) => {
   return (
     <Stack alignItems="center" spacing={0.5}>
       {yearsArray.map((year) => (
-        <StyledTextButtonAtom
+        <ThemedTextButtonAtom
           key={year}
           isDisabled={year !== endYear}
           title={year.toString()}

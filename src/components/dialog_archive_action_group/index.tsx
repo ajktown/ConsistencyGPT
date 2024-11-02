@@ -1,4 +1,4 @@
-import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+import ThemedTextButtonAtom from '@/atoms_themed/ThemedTextButton'
 import StyledTextField from '@/atoms/StyledTextField'
 import StyledTextWithHeaderIcon from '@/atoms/StyledTextWithHeaderIcon'
 import StyledDialog from '@/organisms/StyledDialog'
@@ -62,7 +62,7 @@ const ArchiveActionGroupDialog: FC = () => {
           }}
           title={`Be careful. You cannot unarchive action group after archiving.`}
         />
-        <StyledTextButtonAtom
+        <ThemedTextButtonAtom
           title="Yes, Archive this."
           onClick={onPost}
           isLoading={loading}

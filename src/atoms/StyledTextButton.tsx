@@ -6,9 +6,6 @@ import {
   GlobalMuiVariant,
 } from '../global.interface'
 import { LoadingButton } from '@mui/lab'
-import { getButtonColorLambda } from '@/lambdas/get-app-theme-color.lambda'
-import { appThemeState } from '@/recoil/app-theme/app-theme.state'
-import { useRecoilValue } from 'recoil'
 
 export interface StyledTextButtonProps {
   title: string
@@ -25,14 +22,10 @@ export interface StyledTextButtonProps {
   sx?: SxProps<Theme>
 }
 
-// TODO: I need to consider how to place the theme because I did not want to introduce business related lambda OR state here.
-// TODO: But to bring the consistency, I need to consider the theme here.
-
-const StyledTextButtonAtom: FC<StyledTextButtonProps> = ({
+const StyledTextButton: FC<StyledTextButtonProps> = ({
   onClick,
   ...props
 }) => {
-  const appTheme = useRecoilValue(appThemeState)
   return (
     <Box>
       <Tooltip
@@ -49,7 +42,7 @@ const StyledTextButtonAtom: FC<StyledTextButtonProps> = ({
             onClick={onClick}
             sx={{
               textTransform: `none`,
-              ...getButtonColorLambda(appTheme, props.isDisabled),
+              ...props.sx,
             }}
           >
             {props.title}
@@ -60,4 +53,4 @@ const StyledTextButtonAtom: FC<StyledTextButtonProps> = ({
   )
 }
 
-export default StyledTextButtonAtom
+export default StyledTextButton
