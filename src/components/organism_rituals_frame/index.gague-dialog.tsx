@@ -4,6 +4,8 @@ import { actionGroupAchievedPercentSelector } from '@/recoil/action-groups/actio
 import StyledDialog from '@/organisms/StyledDialog'
 import { DialogContent, DialogTitle, Stack } from '@mui/material'
 import StyledProgressBarMolecule from '@/molecules/StyledProgressBar'
+import { PageConst } from '@/constants/pages.constant'
+import { useRouter } from 'next/router'
 
 /**
  * RitualsFrameGauge shows a simple molecule sized gauge for user's achievement for today
@@ -23,6 +25,10 @@ const RitualsFrameGaugeDialog: FC = () => {
     setTimeout(() => setVisual(percentage), 850)
     setTimeout(() => setOpen(false), 2500)
   }, [visual, percentage])
+
+  // if page is NOT PageConst.Home, we should not show anything:
+  const router = useRouter()
+  if (router.asPath !== PageConst.Home) return null
 
   if (!open) return null
 
