@@ -8,6 +8,7 @@ const AppbarMainLogo: FC = () => {
   const src = useMemo(() => {
     if (appTheme === AppTheme.Halloween)
       return `/app_theme/halloween-cute-pumpkin.png`
+    if (appTheme === AppTheme.Christmas) return `/app_theme/christmas-bell.png`
 
     return `/favicon_archived/android-chrome-512x512.png`
   }, [appTheme])
