@@ -37,6 +37,6 @@ const defaultTheme = ((): AppTheme => {
 
 export const appThemeState = atom<AppTheme>({
   key: Rkp.AppTheme,
-  //default: defaultTheme,
-  default: AppTheme.Christmas, // You can always override the default theme here, and compile will fail if you forget to remove it
+  default: defaultTheme,
+  // default: AppTheme.Christmas, // You can always override the default theme here, and compile will fail if you forget to remove it
 })
