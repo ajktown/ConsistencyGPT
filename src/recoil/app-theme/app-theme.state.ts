@@ -28,7 +28,7 @@ const defaultTheme = ((): AppTheme => {
   // if (isWithinRange(valentines)) return AppTheme.Valentines // Love theme
   // if (isWithinRange(spring)) return AppTheme.Spring // Cherry blossom theme
   // if (isWithinRange(summer)) return AppTheme.Summer // Beach theme
-  // if (isWithinRange(halloween)) return AppTheme.Halloween
+  if (isWithinRange(halloween)) return AppTheme.Halloween
   if (isWithinRange(christmas)) return AppTheme.Christmas // Christmas theme
 
   // Default:
