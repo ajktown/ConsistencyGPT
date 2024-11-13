@@ -20,7 +20,7 @@ const isWithinRange = (date: DateTime<true> | DateTime<false>) => {
   return now >= date.minus({ days: 13 }) && now <= date.plus({ days: 1 })
 }
 
-//const halloween = DateTime.fromObject({ month: 10, day: 31 }).endOf(`day`)
+const halloween = DateTime.fromObject({ month: 10, day: 31 }).endOf(`day`)
 const christmas = DateTime.fromObject({ month: 12, day: 25 }).endOf(`day`)
 const defaultTheme = ((): AppTheme => {
   // TODO: The following themes will be implemented in the future:
@@ -37,6 +37,6 @@ const defaultTheme = ((): AppTheme => {
 
 export const appThemeState = atom<AppTheme>({
   key: Rkp.AppTheme,
-  default: defaultTheme,
-  // default: AppTheme.Christmas, // You can always override the default theme here, and compile will fail if you forget to remove it
+  //default: defaultTheme,
+  default: AppTheme.Christmas, // You can always override the default theme here, and compile will fail if you forget to remove it
 })
