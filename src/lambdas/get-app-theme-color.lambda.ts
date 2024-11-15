@@ -18,11 +18,11 @@ enum Halloween {
 }
 
 enum Christmas {
-  'one' = `#fcf2f2`,
-  'two' = `#ffc2c2`,
-  'three' = `#ff5c5c`,
-  'four' = `#e00000`,
-  'five' = `#990000`,
+  'one' = `#fff7f7`,
+  'two' = `#ffd4d7`,
+  'three' = `#ff99a0`,
+  'four' = `#ff4d58`,
+  'five' = `#eb0014`,
 }
 
 export const getAppThemeColorLambda = (theme?: AppTheme) => {
