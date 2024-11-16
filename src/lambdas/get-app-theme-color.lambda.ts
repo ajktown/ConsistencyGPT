@@ -74,7 +74,7 @@ export const getAppBarColorLambda = (theme?: AppTheme) => {
   if (!theme || theme === AppTheme.Basic) return undefined // use the default color
 
   // by default halloween as only two options for now:
-　if (theme === AppTheme.Halloween) return Halloween.four
+  if (theme === AppTheme.Halloween) return Halloween.four
   return Christmas.five
 }
 

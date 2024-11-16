@@ -5,9 +5,10 @@ import RitualsFrame from '@/components/organism_rituals_frame'
 import Appbar from '@/components/organism_appbar'
 import StyledCentered from '@/organisms/StyledCentered'
 import ThemedTextButtonAtom from '@/atoms_themed/ThemedTextButton'
-import { Grid, Stack, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import { useUserByNickname } from '@/hooks/user/get-user-by-nickname.hook'
 import StyledUserAvatar from '@/atoms/StyledUserAvatar'
+import Grid2 from '@mui/material/Unstable_Grid2'
 
 const UserByNicknamePage: FC = () => {
   const router = useRouter()
@@ -39,8 +40,8 @@ const UserByNicknamePage: FC = () => {
   return (
     <Appbar nickname={nickname.trim()}>
       <ErrorApiConnectionFail />
-      <Grid container>
-        <Grid
+      <Grid2 container>
+        <Grid2
           style={{ display: `flex`, justifyContent: `center` }}
           sx={{ xs: 2 }}
         >
@@ -59,11 +60,11 @@ const UserByNicknamePage: FC = () => {
               {user?.bio}
             </Typography>
           </Stack>
-        </Grid>
-        <Grid sx={{ xs: 10 }}>
+        </Grid2>
+        <Grid2 sx={{ xs: 10 }}>
           <RitualsFrame nickname={nickname} />
-        </Grid>
-      </Grid>
+        </Grid2>
+      </Grid2>
     </Appbar>
   )
 }
