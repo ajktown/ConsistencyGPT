@@ -51,22 +51,22 @@ export const getAppThemeColorLambda = (theme?: AppTheme) => {
       ],
     }
   }
-    return {
-      light: [
-        Christmas.one,
-        Christmas.two,
-        Christmas.three,
-        Christmas.four,
-        Christmas.five,
-      ],
-      dark: [
-        Christmas.one,
-        Christmas.two,
-        Christmas.three,
-        Christmas.four,
-        Christmas.five,
-      ],
-    }
+  return {
+    light: [
+      Christmas.one,
+      Christmas.two,
+      Christmas.three,
+      Christmas.four,
+      Christmas.five,
+    ],
+    dark: [
+      Christmas.one,
+      Christmas.two,
+      Christmas.three,
+      Christmas.four,
+      Christmas.five,
+    ],
+  }
 }
 
 export const getAppBarColorLambda = (theme?: AppTheme) => {
@@ -84,32 +84,33 @@ export const getButtonColorLambda = (
   if (!theme || theme === AppTheme.Basic) return undefined
 
   // by default halloween as only two options for now:
-  if (disabled) {
+  if (theme === AppTheme.Halloween) {
+    if (disabled) {
+      return {
+        color: Halloween.one, // it will be the font color
+        borderColor: Halloween.one, // it will be the border color
+        backgroundColor: Halloween.five,
+      }
+    }
     return {
-      color: Halloween.one, // it will be the font color
-      borderColor: Halloween.one, // it will be the border color
-      backgroundColor: Halloween.five,
+      color: disabled ? Halloween.three : Halloween.five,
+      borderColor: disabled ? Halloween.one : Halloween.five,
+      backgroundColor: disabled ? undefined : Halloween.two,
     }
   }
 
-  if (disabled) {
-    return {
-      color: Christmas.one, // it will be the font color
-      borderColor: Christmas.one, // it will be the border color
-      backgroundColor: Christmas.five,
+  if (theme === AppTheme.Christmas) {
+    if (disabled) {
+      return {
+        color: Christmas.one, // it will be the font color
+        borderColor: Christmas.one, // it will be the border color
+        backgroundColor: Christmas.five,
+      }
     }
-  }
-
-  // return {
-  //   color: disabled ? Halloween.three : Halloween.five,
-  //   borderColor: disabled ? Halloween.one : Halloween.five,
-  //   backgroundColor: disabled ? undefined : Halloween.two,
-  // }
-
-  if (theme === AppTheme.Christmas)
     return {
       color: disabled ? Christmas.three : Christmas.one,
       borderColor: disabled ? Christmas.one : Christmas.one,
       backgroundColor: disabled ? undefined : Christmas.five,
     }
+  }
 }
