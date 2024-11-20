@@ -5,10 +5,9 @@ import RitualsFrame from '@/components/organism_rituals_frame'
 import Appbar from '@/components/organism_appbar'
 import StyledCentered from '@/organisms/StyledCentered'
 import ThemedTextButtonAtom from '@/atoms_themed/ThemedTextButton'
-import { Stack, Typography } from '@mui/material'
+import { Grid2, Stack, Typography } from '@mui/material'
 import { useUserByNickname } from '@/hooks/user/get-user-by-nickname.hook'
 import StyledUserAvatar from '@/atoms/StyledUserAvatar'
-import Grid2 from '@mui/material/Unstable_Grid2'
 
 const UserByNicknamePage: FC = () => {
   const router = useRouter()
