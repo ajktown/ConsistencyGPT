@@ -51,7 +51,6 @@ export const getAppThemeColorLambda = (theme?: AppTheme) => {
       ],
     }
   }
-  if (theme === AppTheme.Christmas)
     return {
       light: [
         Christmas.one,
