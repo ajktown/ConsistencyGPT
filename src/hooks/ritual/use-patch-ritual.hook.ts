@@ -12,9 +12,9 @@ export const usePatchRitual = () => {
         try {
           const [data] = await patchRitualApi({
             ...dto,
-            isArchived: true, // fixed
+            isArchived: false, // fixed
           })
-          set(actionGroupIdsState, data.ritual.actionGroupIds)
+          set(actionGroupIdsState, data.rituals[0].actionGroupIds)
         } catch {}
       },
     [],
