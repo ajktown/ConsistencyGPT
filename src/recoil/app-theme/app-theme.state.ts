@@ -9,6 +9,7 @@ import { DateTime } from 'luxon'
 export enum AppTheme {
   Basic = `basic`,
   Halloween = `halloween`,
+  Christmas = `christmas`,
 }
 
 const isWithinRange = (date: DateTime<true> | DateTime<false>) => {
@@ -20,6 +21,7 @@ const isWithinRange = (date: DateTime<true> | DateTime<false>) => {
 }
 
 const halloween = DateTime.fromObject({ month: 10, day: 31 }).endOf(`day`)
+const christmas = DateTime.fromObject({ month: 12, day: 25 }).endOf(`day`)
 const defaultTheme = ((): AppTheme => {
   // TODO: The following themes will be implemented in the future:
   // if (isWithinRange(newYears)) return AppTheme.NewYear // Happy New Year theme
@@ -27,7 +29,7 @@ const defaultTheme = ((): AppTheme => {
   // if (isWithinRange(spring)) return AppTheme.Spring // Cherry blossom theme
   // if (isWithinRange(summer)) return AppTheme.Summer // Beach theme
   if (isWithinRange(halloween)) return AppTheme.Halloween
-  // if (isWithinRange(christmas)) return AppTheme.Chrstimas // Christmas theme
+  if (isWithinRange(christmas)) return AppTheme.Christmas // Christmas theme
 
   // Default:
   return AppTheme.Basic
@@ -36,5 +38,5 @@ const defaultTheme = ((): AppTheme => {
 export const appThemeState = atom<AppTheme>({
   key: Rkp.AppTheme,
   default: defaultTheme,
-  // default: AppTheme.Halloween, // You can always override the default theme here, and compile will fail if you forget to remove it
+  // default: AppTheme.Christmas, // You can always override the default theme here, and compile will fail if you forget to remove it
 })

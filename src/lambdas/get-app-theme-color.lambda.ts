@@ -17,6 +17,14 @@ enum Halloween {
   'five' = `#d47901`,
 }
 
+enum Christmas {
+  'one' = `#fff7f7`,
+  'two' = `#ffd4d7`,
+  'three' = `#ff99a0`,
+  'four' = `#ff4d58`,
+  'five' = `#eb0014`,
+}
+
 export const getAppThemeColorLambda = (theme?: AppTheme) => {
   if (!theme || theme === AppTheme.Basic)
     return {
@@ -25,20 +33,38 @@ export const getAppThemeColorLambda = (theme?: AppTheme) => {
     }
 
   // by default halloween as only two options for now:
+  if (theme === AppTheme.Halloween) {
+    return {
+      light: [
+        Halloween.one,
+        Halloween.two,
+        Halloween.three,
+        Halloween.four,
+        Halloween.four,
+      ],
+      dark: [
+        Halloween.one,
+        Halloween.two,
+        Halloween.three,
+        Halloween.four,
+        Halloween.four,
+      ],
+    }
+  }
   return {
     light: [
-      Halloween.one,
-      Halloween.two,
-      Halloween.three,
-      Halloween.four,
-      Halloween.four,
+      Christmas.one,
+      Christmas.two,
+      Christmas.three,
+      Christmas.four,
+      Christmas.five,
     ],
     dark: [
-      Halloween.one,
-      Halloween.two,
-      Halloween.three,
-      Halloween.four,
-      Halloween.four,
+      Christmas.one,
+      Christmas.two,
+      Christmas.three,
+      Christmas.four,
+      Christmas.five,
     ],
   }
 }
@@ -47,7 +73,8 @@ export const getAppBarColorLambda = (theme?: AppTheme) => {
   if (!theme || theme === AppTheme.Basic) return undefined // use the default color
 
   // by default halloween as only two options for now:
-  return Halloween.four
+  if (theme === AppTheme.Halloween) return Halloween.four
+  return Christmas.five
 }
 
 export const getButtonColorLambda = (
@@ -57,17 +84,33 @@ export const getButtonColorLambda = (
   if (!theme || theme === AppTheme.Basic) return undefined
 
   // by default halloween as only two options for now:
-  if (disabled) {
+  if (theme === AppTheme.Halloween) {
+    if (disabled) {
+      return {
+        color: Halloween.one, // it will be the font color
+        borderColor: Halloween.one, // it will be the border color
+        backgroundColor: Halloween.five,
+      }
+    }
     return {
-      color: Halloween.three, // it will be the font color
-      borderColor: Halloween.one, // it will be the border color
-      backgroundColor: Halloween.one,
+      color: disabled ? Halloween.three : Halloween.five,
+      borderColor: disabled ? Halloween.one : Halloween.five,
+      backgroundColor: disabled ? undefined : Halloween.two,
     }
   }
 
-  return {
-    color: disabled ? Halloween.three : Halloween.five,
-    borderColor: disabled ? Halloween.one : Halloween.five,
-    backgroundColor: disabled ? undefined : Halloween.two,
+  if (theme === AppTheme.Christmas) {
+    if (disabled) {
+      return {
+        color: Christmas.one, // it will be the font color
+        borderColor: Christmas.one, // it will be the border color
+        backgroundColor: Christmas.five,
+      }
+    }
+    return {
+      color: disabled ? Christmas.three : Christmas.one,
+      borderColor: disabled ? Christmas.one : Christmas.one,
+      backgroundColor: disabled ? undefined : Christmas.five,
+    }
   }
 }
