@@ -20,7 +20,7 @@ const ActionGroupCardButton: FC<Props> = ({ id }) => {
     <StyledCircularButtonAtom
       onClick={onPostActionByActionGroupId}
       radius={80}
-      bgColor="green"
+      bgColor="green" // TODO: Just learned that the #XXXXXX works here xDD
       title="Done!"
       loading={loading}
       typoProps={{
