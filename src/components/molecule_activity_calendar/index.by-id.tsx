@@ -13,7 +13,7 @@ interface Props {
   id: string
 }
 
-const SHRINKING_MIN_WIDTH = 920 // starting width that makes the calendar shrink
+const SHRINKING_MIN_WIDTH = 1020 // starting width that makes the calendar shrink
 const COMMIT_BLOCK_WIDTH = 16 // 12 x 12 with 2 indent between
 
 const ActivityCalendarById: FC<Props> = ({ id }) => {
