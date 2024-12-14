@@ -8,17 +8,20 @@ import ArchiveActionGroupDialog from '../dialog_archive_action_group'
 interface Props {
   nickname?: string
 }
+const FRAME_MAX_WIDTH = 980
 const RitualsFrame: FC<Props> = ({ nickname }) => {
   const actionGroupIds = useRecoilValue(actionGroupIdsState)
 
   return (
-    <Stack alignItems={`center`} spacing={2} p={2}>
-      {!nickname && (
-        <ActionGroupCard id={ActionGroupFixedId.DailyPostWordChallenge} />
-      )}
-      {actionGroupIds.map((id) => (
-        <ActionGroupCard key={id} id={id} nickname={nickname} />
-      ))}
+    <Stack alignItems={`center`}>
+      <Stack maxWidth={FRAME_MAX_WIDTH} spacing={2} p={2}>
+        {!nickname && (
+          <ActionGroupCard id={ActionGroupFixedId.DailyPostWordChallenge} />
+        )}
+        {actionGroupIds.map((id) => (
+          <ActionGroupCard key={id} id={id} nickname={nickname} />
+        ))}
+      </Stack>
       <ArchiveActionGroupDialog />
     </Stack>
   )
