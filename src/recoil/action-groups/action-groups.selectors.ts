@@ -1,10 +1,12 @@
-import { selector } from 'recoil'
+import { selector, selectorFamily } from 'recoil'
 import { Rkp, Rks } from '../index.keys'
 import { actionGroupFamily, actionGroupIdsState } from './action-groups.state'
+import { ActionGroupFixedId } from '@/constants/action-group.constant'
 
 /** Private Recoil Key */
 enum Prk {
   ActionGroupAchievedPercentSelector = `actionGroupAchievedPercentSelector`,
+  IsActionGroupPunchableSelector = `isActionGroupPunchableSelector`,
 }
 
 /**
@@ -29,4 +31,20 @@ export const actionGroupAchievedPercentSelector = selector<number>({
     if (totalCounts === 0) return 0
     return Math.floor((achievedCount / totalCounts) * 100)
   },
+})
+
+/**
+ * isActionGroupPunchableSelector defines if the action group is punchable (the green button with "DONE!" text)
+ */
+export const isActionGroupPunchableSelector = selectorFamily<boolean, string>({
+  key: Rkp.ActionGroups + Prk.IsActionGroupPunchableSelector + Rks.Selector,
+  get:
+    (id: string) =>
+    ({ get }) => {
+      const actionGroup = get(actionGroupFamily(id))
+      if (!actionGroup) return false // not punchable
+      if (actionGroup.props.id === ActionGroupFixedId.DailyPostWordChallenge)
+        return false // not punchable
+      return actionGroup.derivedState.isOnTimeCommittable
+    },
 })

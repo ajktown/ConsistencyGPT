@@ -8,6 +8,8 @@ import ActionGroupCardTitle from './index.title'
 import ActionGroupCardSpecialMessage from './index.special-message'
 import ActionGroupCardMoreOptions from './index.more-options'
 import ActionGroupCardYears from './index.years'
+import { isActionGroupPunchableSelector } from '@/recoil/action-groups/action-groups.selectors'
+import { useRecoilValue } from 'recoil'
 
 interface Props {
   id: string
@@ -15,6 +17,9 @@ interface Props {
 }
 const ActionGroupCard: FC<Props> = ({ id, nickname }) => {
   const onGetActionGroupById = useActionGroupById(id)
+  const isActionGroupPunchable = useRecoilValue(
+    isActionGroupPunchableSelector(id),
+  )
 
   const onClickRefresh = useCallback(async () => {
     // run all together
@@ -23,7 +28,7 @@ const ActionGroupCard: FC<Props> = ({ id, nickname }) => {
 
   return (
     <Card sx={{ display: `flex`, flexDirection: `row` }}>
-      <Stack m={3}>
+      <Stack m={3} width="100%">
         {/* Header */}
         <Stack alignItems="center" direction={`row`} spacing={0.5} m={2}>
           <ActionGroupCardTitle id={id} />
@@ -40,9 +45,11 @@ const ActionGroupCard: FC<Props> = ({ id, nickname }) => {
           )}
         </Stack>
       </Stack>
-      <Box mt={2} mr={2} mb={2}>
-        <ActionGroupCardYears id={id} />
-      </Box>
+      {!isActionGroupPunchable && (
+        <Box pt={2} pr={2} pb={2}>
+          <ActionGroupCardYears id={id} />
+        </Box>
+      )}
     </Card>
   )
 }
