@@ -1,4 +1,5 @@
 import ThemedTextButtonAtom from '@/atoms_themed/ThemedTextButton'
+import { isActionGroupPunchableSelector } from '@/recoil/action-groups/action-groups.selectors'
 import { actionGroupFamily } from '@/recoil/action-groups/action-groups.state'
 import { Stack } from '@mui/material'
 import { FC } from 'react'
@@ -10,8 +11,12 @@ interface Props {
 const endYear = new Date().getFullYear() // Today's year like 2024
 
 const ActionGroupCardYears: FC<Props> = ({ id }) => {
+  const isActionGroupPunchable = useRecoilValue(
+    isActionGroupPunchableSelector(id),
+  )
   const actionGroup = useRecoilValue(actionGroupFamily(id))
-  if (!actionGroup) return null
+  if (!actionGroup) return null // cannot show the year chips as the action group is not loaded yet
+  if (isActionGroupPunchable) return null // does not show the year chip so that users can focus on achieving (punching) the goal
 
   const yearsArray = Array.from(
     // like this: [2024, 2023, 2022 ...]
