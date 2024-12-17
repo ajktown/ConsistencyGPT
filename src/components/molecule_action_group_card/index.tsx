@@ -23,10 +23,11 @@ const ActionGroupCard: FC<Props> = ({ id, nickname }) => {
 
   return (
     <Card sx={{ display: `flex`, flexDirection: `row` }}>
-      <Stack m={3}>
+      <Stack m={3} width="100%">
         {/* Header */}
         <Stack alignItems="center" direction={`row`} spacing={0.5} m={2}>
           <ActionGroupCardTitle id={id} />
+          <Box flex={1} />
           <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
           <ActionGroupCardMoreOptions id={id} nickname={nickname} />
         </Stack>
@@ -40,7 +41,7 @@ const ActionGroupCard: FC<Props> = ({ id, nickname }) => {
           )}
         </Stack>
       </Stack>
-      <Box mt={2} mr={2} mb={2}>
+      <Box pt={2} pr={2} pb={2}>
         <ActionGroupCardYears id={id} />
       </Box>
     </Card>
