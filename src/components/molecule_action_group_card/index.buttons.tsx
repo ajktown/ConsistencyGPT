@@ -1,7 +1,9 @@
 import StyledCircularButtonAtom from '@/atoms/StyledCircularButton'
 import { ActionGroupFixedId } from '@/constants/action-group.constant'
 import { usePostActionByActionGroupId } from '@/hooks/action-group/use-post-action-by-action-group-id.hook'
+import { getDoneColorLambda } from '@/lambdas/get-app-theme-color.lambda'
 import { actionGroupFamily } from '@/recoil/action-groups/action-groups.state'
+import { appThemeState } from '@/recoil/app-theme/app-theme.state'
 import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
 
@@ -9,6 +11,7 @@ interface Props {
   id: string
 }
 const ActionGroupCardButton: FC<Props> = ({ id }) => {
+  const appTheme = useRecoilValue(appThemeState)
   const actionGroup = useRecoilValue(actionGroupFamily(id))
   const [loading, onPostActionByActionGroupId] =
     usePostActionByActionGroupId(id)
@@ -22,7 +25,7 @@ const ActionGroupCardButton: FC<Props> = ({ id }) => {
     <StyledCircularButtonAtom
       onClick={onPostActionByActionGroupId}
       radius={80}
-      bgColor="green"
+      bgColor={getDoneColorLambda(appTheme)}
       title="Done!"
       loading={loading}
       typoProps={{
