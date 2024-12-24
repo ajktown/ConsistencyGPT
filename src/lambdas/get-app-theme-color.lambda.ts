@@ -114,3 +114,17 @@ export const getButtonColorLambda = (
     }
   }
 }
+
+/**
+ * Color for the done button
+ */
+export const getDoneColorLambda = (theme?: AppTheme): string => {
+  switch (theme) {
+    case AppTheme.Halloween:
+      return Halloween.five
+    case AppTheme.Christmas:
+      return Christmas.five
+    default:
+      return `green`
+  }
+}
