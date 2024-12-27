@@ -8,6 +8,7 @@ import ActionGroupCardTitle from './index.title'
 import ActionGroupCardSpecialMessage from './index.special-message'
 import ActionGroupCardMoreOptions from './index.more-options'
 import ActionGroupCardYears from './index.years'
+import ActionGroupCardStreak from './index.streak'
 
 interface Props {
   id: string
@@ -28,6 +29,7 @@ const ActionGroupCard: FC<Props> = ({ id, nickname }) => {
         <Stack alignItems="center" direction={`row`} spacing={0.5} m={2}>
           <ActionGroupCardTitle id={id} />
           <Box flex={1} />
+          <ActionGroupCardStreak id={id} />
           <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
           <ActionGroupCardMoreOptions id={id} nickname={nickname} />
         </Stack>
