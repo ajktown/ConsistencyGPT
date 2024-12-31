@@ -6,6 +6,7 @@ import { AppTheme, appThemeState } from '@/recoil/app-theme/app-theme.state'
 const AppbarMainLogo: FC = () => {
   const appTheme = useRecoilValue(appThemeState)
   const src = useMemo(() => {
+    if (appTheme === AppTheme.NewYear) return `/app_theme/new-year.jpg`
     if (appTheme === AppTheme.Halloween)
       return `/app_theme/halloween-cute-pumpkin.png`
     if (appTheme === AppTheme.Christmas) return `/app_theme/christmas-bell.png`
