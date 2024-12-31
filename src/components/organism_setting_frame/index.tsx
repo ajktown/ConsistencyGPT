@@ -1,6 +1,6 @@
 import { FC, useCallback, useState } from 'react'
 import { actionGroupIdsState } from '@/recoil/action-groups/action-groups.state'
-import { useRecoilValue } from 'recoil'
+import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { List, ListItem, ListItemText, Stack } from '@mui/material'
 import SettingFrameRefresher from './index.setting-refresher'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
@@ -22,26 +22,31 @@ const SettingFrame: FC = () => {
     router.push(PageConst.Home)
   }, [router])
 
-  const onClickArrow = useCallback(
-    async (id: string, isUpward = true) => {
-      try {
+  const onClickSave = useCallback(async () => {
+    try {
+      await onPatchRitual({ actionGroupIds: actionGroupIds })
+    } catch {}
+  }, [actionGroupIds, onPatchRitual])
+
+  const onClickArrow = useRecoilCallback(
+    ({ set }) =>
+      async (id: string, isUpward = true) => {
         const index = actionGroupIds.findIndex(
           (actionGroupId) => actionGroupId === id,
         )
         const newActionGroupIds = [...actionGroupIds]
         const tmp = newActionGroupIds[index]
-
         const newIndex = isUpward ? -1 : 1
         newActionGroupIds[index] = newActionGroupIds[index + newIndex]
         newActionGroupIds[index + newIndex] = tmp
-        await onPatchRitual({ actionGroupIds: newActionGroupIds })
+
+        set(actionGroupIdsState, newActionGroupIds)
 
         // highlight modified action group so that it is  easier to track:
         setHighlightedId(id)
         setTimeout(() => setHighlightedId(null), 0.4 * 1000) // seconds
-      } catch {}
-    },
-    [actionGroupIds, onPatchRitual],
+      },
+    [actionGroupIds],
   )
 
   return (
@@ -50,6 +55,7 @@ const SettingFrame: FC = () => {
         title={`Back to main page`}
         onClick={onClickToHomePage}
       />
+      <ThemedTextButtonAtom title={`Save`} onClick={onClickSave} />
       <List sx={{ width: `100%`, maxWidth: 700, bgcolor: `background.paper` }}>
         {actionGroupIds.map((id, i) => (
           <ListItem
