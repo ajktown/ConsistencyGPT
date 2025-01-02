@@ -8,7 +8,7 @@ import { DateTime } from 'luxon'
 
 export enum AppTheme {
   Basic = `basic`,
-  NewYear = `new-years`,
+  NewYear = `new-year`,
   Halloween = `halloween`,
   Christmas = `christmas`,
 }
