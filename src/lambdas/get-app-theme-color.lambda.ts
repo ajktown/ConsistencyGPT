@@ -9,6 +9,15 @@ enum Basic {
   'five' = `#29cc7f`,
 }
 
+// purple feeling
+enum NewYear {
+  'one' = `#ebedf0`,
+  'two' = `#d6b3ff`,
+  'three' = `#c08aff`,
+  'four' = `#ac68fc`,
+  'five' = `#9742fc`,
+}
+
 enum Halloween {
   'one' = `#ebedf0`,
   'two' = `#ffee4a`,
@@ -31,6 +40,25 @@ export const getAppThemeColorLambda = (theme?: AppTheme) => {
       light: [Basic.one, Basic.two, Basic.three, Basic.four, Basic.five],
       dark: [Basic.one, Basic.two, Basic.three, Basic.four, Basic.five],
     }
+
+  if (theme === AppTheme.NewYear) {
+    return {
+      light: [
+        NewYear.one,
+        NewYear.two,
+        NewYear.three,
+        NewYear.four,
+        NewYear.five,
+      ],
+      dark: [
+        NewYear.one,
+        NewYear.two,
+        NewYear.three,
+        NewYear.four,
+        NewYear.five,
+      ],
+    }
+  }
 
   // by default halloween as only two options for now:
   if (theme === AppTheme.Halloween) {
@@ -71,6 +99,7 @@ export const getAppThemeColorLambda = (theme?: AppTheme) => {
 
 export const getAppBarColorLambda = (theme?: AppTheme) => {
   if (!theme || theme === AppTheme.Basic) return undefined // use the default color
+  if (theme === AppTheme.NewYear) return NewYear.five
 
   // by default halloween as only two options for now:
   if (theme === AppTheme.Halloween) return Halloween.four
@@ -82,6 +111,21 @@ export const getButtonColorLambda = (
   disabled?: boolean,
 ): SxProps<Theme> | undefined => {
   if (!theme || theme === AppTheme.Basic) return undefined
+
+  if (theme === AppTheme.NewYear) {
+    if (disabled) {
+      return {
+        color: NewYear.one, // it will be the font color
+        borderColor: NewYear.one, // it will be the border color
+        backgroundColor: NewYear.five,
+      }
+    }
+    return {
+      color: NewYear.five,
+      borderColor: NewYear.five,
+      backgroundColor: NewYear.one,
+    }
+  }
 
   // by default halloween as only two options for now:
   if (theme === AppTheme.Halloween) {
@@ -120,6 +164,8 @@ export const getButtonColorLambda = (
  */
 export const getDoneColorLambda = (theme?: AppTheme): string => {
   switch (theme) {
+    case AppTheme.NewYear:
+      return NewYear.five
     case AppTheme.Halloween:
       return Halloween.five
     case AppTheme.Christmas:
