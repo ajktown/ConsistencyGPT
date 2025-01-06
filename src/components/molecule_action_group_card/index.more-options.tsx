@@ -4,8 +4,9 @@ import StyledIconButtonWithMenuAtom from '@/atoms/StyledIconButtonWithMenu'
 import {
   actionGroupFamily,
   archivingActionGroupIdState,
+  yesterdayActionDeletingACtionGroupIdState,
 } from '@/recoil/action-groups/action-groups.state'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilCallback, useRecoilValue, useSetRecoilState } from 'recoil'
 import { ActionGroupFixedId } from '@/constants/action-group.constant'
 import { usePostActionByActionGroupId } from '@/hooks/action-group/use-post-action-by-action-group-id.hook'
 import { usePostDummyActionByActionGroupId } from '@/hooks/action-group/use-post-dummy-action-by-action-group-id.hook'
@@ -21,8 +22,15 @@ const ActionGroupCardMoreOptions: FC<Props> = ({ id, nickname }) => {
     usePostActionByActionGroupId(id)
   const [loadingDelete, onDeleteTodayActionsByActionGroupId] =
     useDeleteActionsByActionGroupId(id, `today`)
-  const [loadingDeleteYesterday, onDeleteYesterdayActionsByActionGroupId] =
-    useDeleteActionsByActionGroupId(id, `yesterday`)
+
+  const onClickDeleteYesterdayActions = useRecoilCallback(
+    ({ set }) =>
+      async () => {
+        // Deleting yesterday's action commitment cannot be undone, so warning dialog is shown.
+        set(yesterdayActionDeletingACtionGroupIdState, id)
+      },
+    [id],
+  )
   const [loadingDummyPost, onPostDummyActionByActionGroupId] =
     usePostDummyActionByActionGroupId(id)
 
@@ -65,11 +73,7 @@ const ActionGroupCardMoreOptions: FC<Props> = ({ id, nickname }) => {
   )
 
   // contains every loading state of a function:
-  const everyLoading =
-    loadingLatePost ||
-    loadingDelete ||
-    loadingDeleteYesterday ||
-    loadingDummyPost
+  const everyLoading = loadingLatePost || loadingDelete || loadingDummyPost
 
   if (nickname) return null // if it is shared mode (or has nickname), do not show the button
 
@@ -98,7 +102,7 @@ const ActionGroupCardMoreOptions: FC<Props> = ({ id, nickname }) => {
           id: `delete yesterday action`,
           title: `Delete Yesterday's Action`, // not actions (has "s") because API only allows one action per day atm in Mar 2024
           isDisabled: isDeleteYesterdayActionsDisabled || everyLoading,
-          onClick: onDeleteYesterdayActionsByActionGroupId,
+          onClick: onClickDeleteYesterdayActions,
         },
         {
           id: `archive_action_group`,
