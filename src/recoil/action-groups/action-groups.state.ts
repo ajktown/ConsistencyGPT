@@ -29,7 +29,6 @@ export const archivingActionGroupIdState = atom<string>({
 })
 
 export const yesterdayActionDeletingACtionGroupIdState = atom<string>({
-  key:
-    Rkp.ActionGroups + Prk.YesterdayActionDeletingActionGroupId + Rks.Selector,
+  key: Rkp.ActionGroups + Prk.YesterdayActionDeletingActionGroupId,
   default: ``, // empty string is considered not-opened
 })
