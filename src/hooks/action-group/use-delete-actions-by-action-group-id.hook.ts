@@ -5,6 +5,18 @@ import { deleteTodayActionsByActionGroupId } from '@/api/action-groups/delete-to
 import { GetActionGroupRes } from '@/api/action-groups/index.interface'
 import { deleteYesterdayActionsByActionGroupId } from '@/api/action-groups/delete-yesterday-action-by-action-group-id.api'
 
+// TODO: Not sure where to put this function (or is creating this function necessary?)
+const getData = async (actionGroupId: string, which: string) => {
+  switch (which) {
+    case `today`:
+      return (await deleteTodayActionsByActionGroupId(actionGroupId))[0]
+    case `yesterday`:
+      return (await deleteYesterdayActionsByActionGroupId(actionGroupId))[0]
+    default:
+      return null
+  }
+}
+
 type UseDeleteActionsByActionGroupId = [boolean, () => Promise<void>]
 export const useDeleteActionsByActionGroupId = (
   actionGroupId: string,
@@ -17,14 +29,10 @@ export const useDeleteActionsByActionGroupId = (
       async () => {
         try {
           setLoading(true)
-          let data: GetActionGroupRes | null = null
-          if (which === `today`) {
-            data = (await deleteTodayActionsByActionGroupId(actionGroupId))[0]
-          } else {
-            data = (
-              await deleteYesterdayActionsByActionGroupId(actionGroupId)
-            )[0]
-          }
+          const data: GetActionGroupRes | null = await getData(
+            actionGroupId,
+            which,
+          )
           if (data === null) throw new Error(`data is null`)
           set(actionGroupFamily(data.props.id), data)
         } finally {
