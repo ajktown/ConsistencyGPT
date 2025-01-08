@@ -5,6 +5,7 @@ import { GetAuthPrepRes } from '@/api/auth/get-auth-prep.api'
 /** Private Recoil Key */
 enum Prk {
   AuthPrepState = `AuthPrepState`,
+  AppBootedState = `AppBootedState`,
 }
 
 type PrivateAuthPrepState =
@@ -17,7 +18,7 @@ export const authPrepState = atom<PrivateAuthPrepState>({
 })
 
 export const isAppBootedSelector = selector<boolean>({
-  key: Rkp.App + Rks.Selector,
+  key: Rkp.App + Prk.AppBootedState + Rks.Selector,
   get: ({ get }) => {
     const got = get(authPrepState)
     return got !== undefined

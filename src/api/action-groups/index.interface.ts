@@ -49,6 +49,7 @@ interface ActionGroupDerivedState {
   isDummyCommittable: boolean
   isLateCommittable: boolean
   isDeletable: boolean
+  isYesterdayDeletable: boolean
 }
 
 export interface GetActionGroupRes {

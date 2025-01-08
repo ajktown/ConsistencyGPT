@@ -5,6 +5,7 @@ import ActionGroupCard from '@/components/molecule_action_group_card'
 import { Stack } from '@mui/material'
 import { ActionGroupFixedId } from '@/constants/action-group.constant'
 import ArchiveActionGroupDialog from '../dialog_archive_action_group'
+import YesterdayActionDeletingWarningDialog from '../organism_appbar/index.main-warning-dialog'
 interface Props {
   nickname?: string
 }
@@ -23,6 +24,7 @@ const RitualsFrame: FC<Props> = ({ nickname }) => {
         ))}
       </Stack>
       <ArchiveActionGroupDialog />
+      <YesterdayActionDeletingWarningDialog />
     </Stack>
   )
 }

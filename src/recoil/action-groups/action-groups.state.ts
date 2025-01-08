@@ -7,6 +7,7 @@ enum Prk {
   ActionGroupIdsState = `ActionGroupIdsState`,
   ActionGroupsState = `ActionGroupState`,
   ArchivingActionGroupIdState = `ArchivingActionGroupIdState`,
+  YesterdayActionDeletingActionGroupId = `yesterdayActionDeletingActionGroupIdState`,
 }
 
 type ActionGroupState = undefined | null | GetActionGroupRes
@@ -25,4 +26,9 @@ export const actionGroupIdsState = atom<string[]>({
 export const archivingActionGroupIdState = atom<string>({
   key: Rkp.ActionGroups + Prk.ArchivingActionGroupIdState,
   default: ``,
+})
+
+export const yesterdayActionDeletingACtionGroupIdState = atom<string>({
+  key: Rkp.ActionGroups + Prk.YesterdayActionDeletingActionGroupId,
+  default: ``, // empty string is considered not-opened
 })
