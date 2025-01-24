@@ -7,20 +7,22 @@ interface Props {
   id: string
 }
 
+/**
+ * ActionGroupCardTitleCopier renders a copy button for action-group's task if it exists
+ */
 const ActionGroupCardTitleCopier: FC<Props> = ({ id }) => {
-  const actionGroup = useRecoilValue(actionGroupFamily(id))
+  const task: string = useRecoilValue(actionGroupFamily(id))?.props.task ?? ``
 
   const onClick = useCallback(() => {
-    if (!actionGroup) return // disabled as action-group info is not loaded yet
-    navigator.clipboard.writeText(actionGroup.props.task)
-  }, [actionGroup])
+    if (!task) return // disabled as action-group info is not loaded yet
+    navigator.clipboard.writeText(task)
+  }, [task])
 
-  if (!actionGroup) return null
+  if (!task) return null
 
   return (
     <StyledIconButtonAtom
       onClick={onClick}
-      isDisabled={!actionGroup}
       jsxElementButton={<ContentCopyIcon fontSize="small" />}
     />
   )
