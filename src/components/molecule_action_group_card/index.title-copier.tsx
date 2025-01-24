@@ -11,6 +11,8 @@ interface Props {
  * ActionGroupCardTitleCopier renders a copy button for action-group's task if it exists
  */
 const ActionGroupCardTitleCopier: FC<Props> = ({ id }) => {
+  // task "": we have nothing to copy, so the button will be disabled (hidden)
+  // task non-empty-string: we have something to copy, so the button will be enabled (shown)
   const task: string = useRecoilValue(actionGroupFamily(id))?.props.task ?? ``
 
   const onClick = useCallback(() => {
