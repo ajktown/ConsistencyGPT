@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, JSX } from 'react'
 import { Tooltip, Box, SxProps, Theme } from '@mui/material'
 import {
   GlobalMuiColor,
