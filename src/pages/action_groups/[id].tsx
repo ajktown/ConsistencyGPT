@@ -6,7 +6,7 @@ import ActionGroupCard from '@/components/molecule_action_group_card'
 
 const ActionGroupByIdPage: FC = () => {
   const router = useRouter()
-  const id = typeof router.query.id === 'string' ? router.query.id : ""
+  const id = typeof router.query.id === `string` ? router.query.id : ``
 
   return (
     <Appbar>
