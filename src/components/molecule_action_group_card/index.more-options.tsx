@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react'
+import { FC, useCallback, useMemo } from 'react'
 import MoreIcon from '@mui/icons-material/MoreVert'
 import StyledIconButtonWithMenuAtom from '@/atoms/StyledIconButtonWithMenu'
 import {
@@ -11,6 +11,7 @@ import { ActionGroupFixedId } from '@/constants/action-group.constant'
 import { usePostActionByActionGroupId } from '@/hooks/action-group/use-post-action-by-action-group-id.hook'
 import { usePostDummyActionByActionGroupId } from '@/hooks/action-group/use-post-dummy-action-by-action-group-id.hook'
 import { useDeleteActionsByActionGroupId } from '@/hooks/action-group/use-delete-actions-by-action-group-id.hook'
+import { useOpenNewTab } from '@/hooks/use-open-new-tab'
 
 interface Props {
   id: string // action group id
@@ -31,6 +32,9 @@ const ActionGroupCardMoreOptions: FC<Props> = ({ id, nickname }) => {
       },
     [id],
   )
+
+  const onOpenNewTab = useOpenNewTab(`/action-groups/` + id)
+
   const [loadingDummyPost, onPostDummyActionByActionGroupId] =
     usePostDummyActionByActionGroupId(id)
 
@@ -110,6 +114,12 @@ const ActionGroupCardMoreOptions: FC<Props> = ({ id, nickname }) => {
           isDisabled:
             everyLoading || id === ActionGroupFixedId.DailyPostWordChallenge,
           onClick: () => setArchivingActionGroupId(id),
+        },
+        {
+          id: `Open this action group in new tab`,
+          title: `Open this action group in new tab`,
+          isDisabled: everyLoading,
+          onClick: onOpenNewTab,
         },
       ]}
       jsxElementButton={<MoreIcon />}
