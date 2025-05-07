@@ -5,6 +5,7 @@ export enum PageConst {
   SignIn = `/signin`,
   SignUp = `/signup`,
   Setting = `/setting`,
+  ActionGroups = `/action_groups`,
 }
 
 export const DEFAULT_MAIN_APP_PAGE: PageConst = PageConst.Home

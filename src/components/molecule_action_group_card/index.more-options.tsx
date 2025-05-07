@@ -12,6 +12,7 @@ import { usePostActionByActionGroupId } from '@/hooks/action-group/use-post-acti
 import { usePostDummyActionByActionGroupId } from '@/hooks/action-group/use-post-dummy-action-by-action-group-id.hook'
 import { useDeleteActionsByActionGroupId } from '@/hooks/action-group/use-delete-actions-by-action-group-id.hook'
 import { useOpenNewTab } from '@/hooks/use-open-new-tab'
+import { PageConst } from '@/constants/pages.constant'
 
 interface Props {
   id: string // action group id
@@ -33,7 +34,7 @@ const ActionGroupCardMoreOptions: FC<Props> = ({ id, nickname }) => {
     [id],
   )
 
-  const onOpenNewTab = useOpenNewTab(`/action-groups/` + id)
+  const onOpenNewTab = useOpenNewTab(PageConst.ActionGroups + "/" + id)
 
   const [loadingDummyPost, onPostDummyActionByActionGroupId] =
     usePostDummyActionByActionGroupId(id)
