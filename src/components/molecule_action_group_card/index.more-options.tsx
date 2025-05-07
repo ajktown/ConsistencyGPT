@@ -34,7 +34,7 @@ const ActionGroupCardMoreOptions: FC<Props> = ({ id, nickname }) => {
     [id],
   )
 
-  const onOpenNewTab = useOpenNewTab(PageConst.ActionGroups + "/" + id)
+  const onOpenNewTab = useOpenNewTab(PageConst.ActionGroups + `/` + id)
 
   const [loadingDummyPost, onPostDummyActionByActionGroupId] =
     usePostDummyActionByActionGroupId(id)
