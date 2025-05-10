@@ -23,6 +23,10 @@ export const useIsAppBooted = (): boolean => {
       // If user is not signed in at this point, it should be an error.
       if (!isSignedIn) throw new Error(`Not Signed In`)
 
+      // The following page requires sign in:
+      if (router.asPath.startsWith(PageConst.ActionGroups)) return
+
+      // Any non-specific page should be redirected to the default main app page:
       router.push(DEFAULT_MAIN_APP_PAGE)
     } catch {
       await handleSignOutApp()
