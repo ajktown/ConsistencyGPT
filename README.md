@@ -1,4 +1,5 @@
 # Consistency GPT
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/ajktown/ConsistencyGPT)
 
 Master Your Daily Tasks with GitHub Commit Calendar-Style Tracking
 
