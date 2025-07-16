@@ -15,7 +15,7 @@ import { preferenceState } from '@/recoil/preferences/preference.state'
  */
 const RitualsFrameGaugeDialog: FC = () => {
   const [open, setOpen] = useState(false)
-  const [visual, setVisual] = useState<number>(0)
+  const [visual, setVisual] = useState<number>(0) // visual is the percentage we show in the dialog, for animation purposes
   const percentage = useRecoilValue(actionGroupAchievedPercentSelector)
   const preference = useRecoilValue(preferenceState)
 
