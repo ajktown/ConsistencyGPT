@@ -6,6 +6,7 @@ import { DialogContent, DialogTitle, Stack } from '@mui/material'
 import StyledProgressBarMolecule from '@/molecules/StyledProgressBar'
 import { PageConst } from '@/constants/pages.constant'
 import { useRouter } from 'next/router'
+import { preferenceState } from '@/recoil/preferences/preference.state'
 
 /**
  * RitualsFrameGauge shows a simple molecule sized gauge for user's achievement for today
@@ -16,6 +17,7 @@ const RitualsFrameGaugeDialog: FC = () => {
   const [open, setOpen] = useState(false)
   const [visual, setVisual] = useState<number>(0)
   const percentage = useRecoilValue(actionGroupAchievedPercentSelector)
+  const preference = useRecoilValue(preferenceState)
 
   useEffect(() => {
     if (visual === percentage) return // if it is the same, we should not show anything!
@@ -28,8 +30,9 @@ const RitualsFrameGaugeDialog: FC = () => {
 
   // if page is NOT PageConst.Home, we should not show anything:
   const router = useRouter()
-  if (router.asPath !== PageConst.Home) return null
 
+  if (router.asPath !== PageConst.Home) return null
+  if (!preference?.useProgressDialog) return null
   if (!open) return null
 
   return (
