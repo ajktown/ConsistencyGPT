@@ -4,7 +4,6 @@ import { DataBasics } from '../index.interface'
 export interface IPreference extends IPreferenceCGT, DataBasics {
   id: string
   nativeLanguages: GlobalLanguageCode[]
-  useProgressDialog: boolean
 }
 
 interface IPreferenceCGT {
