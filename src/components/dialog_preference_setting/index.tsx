@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 const PreferenceSettingDialog: FC = () => {
-  // TODO: WIll implement this later
+  // TODO: Will implement this later
   return null
 }
 
