@@ -10,7 +10,7 @@ import RitualsFrameRefreshButton from '@/components/organism_rituals_frame/index
 import AppbarGitHubButtonPart from '../atom_appbar_parts/index.github_icon'
 import useWindowSize from 'react-use/lib/useWindowSize'
 import RitualsFrameGauge from '../organism_rituals_frame/index.gauge'
-import RitualsFrameGaugeDialog from '../organism_rituals_frame/index.gague-dialog'
+import RitualsFrameGaugeDialog from '../organism_rituals_frame/index.gauge-dialog'
 import { getAppBarColorLambda } from '@/lambdas/get-app-theme-color.lambda'
 import { useRecoilValue } from 'recoil'
 import { appThemeState } from '@/recoil/app-theme/app-theme.state'
