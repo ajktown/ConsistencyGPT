@@ -56,7 +56,7 @@ const SettingFrame: FC = () => {
         title={`Back to main page`}
         onClick={onClickToHomePage}
       />
-      <Paper style={{ width: `100%`, maxWidth: 700, padding: 16 }}>
+      <Paper sx={{ width: '100%', maxWidth: 700, p: 2 }}>
         <UseProgressDialogSwitch />
       </Paper>
       <ThemedTextButtonAtom title={`Save`} onClick={onClickSave} />
