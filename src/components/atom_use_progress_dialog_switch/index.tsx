@@ -32,8 +32,8 @@ const UseProgressDialogSwitch: FC = () => {
         }}
         switchProps={{
           onChange,
-          checked: useProgressDialog || loading,
-          disabled: useProgressDialog === undefined, // if undefined (So not boolean) we do not have data yet so we disable the switch
+          checked: Boolean(useProgressDialog),
+          disabled: useProgressDialog === undefined || loading, // Disable the switch if data is not available or an operation is in progress
         }}
       />
     </Stack>
