@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { usePreference } from '../preference/use-preference.hook'
 
-// useSync runs only once
-// This may not exist in multiple places
+// Initializes preference state on component mount
+// This hook should not be used in multiple places simultaneously
 export const useSync = (): void => {
   const onGetPreference = usePreference()
 
