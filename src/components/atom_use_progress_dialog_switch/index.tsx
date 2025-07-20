@@ -27,8 +27,8 @@ const UseProgressDialogSwitch: FC = () => {
       <StyledSwitch
         tooltipProps={{
           title: useProgressDialog
-            ? `Hide archived words`
-            : `Show archived words`,
+            ? `Disable progress dialog`
+            : `Enable progress dialog`,
         }}
         switchProps={{
           onChange,
