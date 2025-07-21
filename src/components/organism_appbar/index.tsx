@@ -15,6 +15,7 @@ import { getAppBarColorLambda } from '@/lambdas/get-app-theme-color.lambda'
 import { useRecoilValue } from 'recoil'
 import { appThemeState } from '@/recoil/app-theme/app-theme.state'
 import AppbarMainLogo from './index.main-logo'
+import { useSync } from '@/hooks/sync/use-sync.hook'
 
 const PRIVATE_TITLE = `Consistency GPT (Beta)`
 const PRIVATE_SHORTER_TITLE = `CGT`
@@ -26,6 +27,8 @@ interface Props {
 }
 const Appbar: FC<Props> = ({ children, nickname }) => {
   const appTheme = useRecoilValue(appThemeState)
+  useSync()
+
   const { width } = useWindowSize()
 
   return (

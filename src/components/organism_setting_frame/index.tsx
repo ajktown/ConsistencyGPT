@@ -1,7 +1,7 @@
 import { FC, useCallback, useState } from 'react'
 import { actionGroupIdsState } from '@/recoil/action-groups/action-groups.state'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
-import { List, ListItem, ListItemText, Stack } from '@mui/material'
+import { List, ListItem, ListItemText, Paper, Stack } from '@mui/material'
 import SettingFrameRefresher from './index.setting-refresher'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
@@ -11,6 +11,7 @@ import { usePatchRitual } from '@/hooks/ritual/use-patch-ritual.hook'
 import ThemedTextButtonAtom from '@/atoms_themed/ThemedTextButton'
 import { useRouter } from 'next/router'
 import { PageConst } from '@/constants/pages.constant'
+import UseProgressDialogSwitch from '../atom_use_progress_dialog_switch'
 
 const SettingFrame: FC = () => {
   const actionGroupIds = useRecoilValue(actionGroupIdsState)
@@ -55,6 +56,9 @@ const SettingFrame: FC = () => {
         title={`Back to main page`}
         onClick={onClickToHomePage}
       />
+      <Paper sx={{ width: `100%`, maxWidth: 700, p: 2 }}>
+        <UseProgressDialogSwitch />
+      </Paper>
       <ThemedTextButtonAtom title={`Save`} onClick={onClickSave} />
       <List sx={{ width: `100%`, maxWidth: 700, bgcolor: `background.paper` }}>
         {actionGroupIds.map((id, i) => (

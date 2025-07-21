@@ -11,7 +11,7 @@ interface IPreferenceCGT {
   useProgressDialog: boolean
 }
 
-export interface PreferenceModifiable {
+export interface PreferenceModifiable extends IPreferenceCGT {
   nativeLanguages: GlobalLanguageCode[]
   selectedDictIds: string[]
 }
